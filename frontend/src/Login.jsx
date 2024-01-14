@@ -7,6 +7,8 @@ export default function Login() {
     password: "",
   });
 
+  const [validLogin, setValidLogin] = useState(false);
+
   function handleChange(event) {
     const { name, value } = event.target;
     setLoginData((prevLoginData) => {
@@ -15,6 +17,15 @@ export default function Login() {
         [name]: value,
       };
     });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    alert("submit unsuccesful");
+
+    //TODO
+    //on click Login Logic  
+
   }
 
   return (
@@ -39,7 +50,7 @@ export default function Login() {
             name="password"
             id="password"
             onChange={handleChange}
-            value={password.userName}
+            value={loginData.password}
           />
           <br />
           <button type="submit">Login</button>
