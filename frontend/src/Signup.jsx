@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
   const [signupData, setSignupData] = useState({
@@ -22,7 +23,7 @@ export default function SignUp() {
       };
     });
   }
-  
+
   return (
     <>
       <div className="signupDiv">
@@ -33,6 +34,7 @@ export default function SignUp() {
               type="text"
               placeholder="First Name"
               name="firstName"
+              id="firstName"
               value={signupData.firstName}
               onChange={handleChange}
             />
@@ -43,6 +45,7 @@ export default function SignUp() {
               type="text"
               placeholder="Last Name"
               name="lastName"
+              id="lastName"
               value={signupData.lastName}
               onChange={handleChange}
             />
@@ -53,6 +56,7 @@ export default function SignUp() {
               type="email"
               placeholder="Email"
               name="email"
+              id="email"
               value={signupData.email}
               onChange={handleChange}
             />
@@ -63,6 +67,7 @@ export default function SignUp() {
               type="date"
               placeholder="DOB"
               name="DOB"
+              id="DOB"
               value={signupData.DOB}
               onChange={handleChange}
             />
@@ -73,6 +78,7 @@ export default function SignUp() {
               type="text"
               placeholder="User Name"
               name="username"
+              id="username"
               value={signupData.username}
               onChange={handleChange}
             />
@@ -83,6 +89,7 @@ export default function SignUp() {
               type="password"
               placeholder="password"
               name="password"
+              id="password"
               value={signupData.password}
               onChange={handleChange}
             />
@@ -93,11 +100,14 @@ export default function SignUp() {
               type="password"
               placeholder="confirm Password"
               name="confirmPassword"
+              id="confirmPassword"
               value={signupData.confirmPassword}
               onChange={handleChange}
             />
             <br />
             <button>submit</button>
+            <p>Account Exists?</p>
+            <Link to="/"><button>Login</button></Link>
           </form>
       </div>
     </>
