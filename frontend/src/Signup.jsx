@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-export default function SignUp() {
-  const [signupData, setSignupData] = useState({
+export default function SignUp(props) {
+  const initalState = {
     firstName: "",
     lastName: "",
     email: "",
@@ -10,7 +11,8 @@ export default function SignUp() {
     userName: "",
     password: "",
     confirmPassword: "",
-  });
+  };
+  const [signupData, setSignupData] = useState(initalState);
 
   const [validSignup, setValidSignup] = useState("");
 
@@ -32,20 +34,15 @@ export default function SignUp() {
     //signup Validataion
     // signupVadiation(signupData)
 
-
-    try {
-      const response = await fetch("http://localhost:5000/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signupData),
-      });
-      const responseData = await response.json();
-      console.log("Form data sent successfully:", responseData);
-    } catch (error) {
-      console.error("Error sending form data:", error);
-    }
+    axios
+      .post("http://localhost:5000/signup", signupData)
+      .then((res) => {
+        console.log(res);
+        setSignupData(initalState);
+        // props.setCurrentUser(signupData.userName);
+        // console.log(props.currentUser);
+      })
+      .catch((err) => console.log(err));
   }
 
   return (

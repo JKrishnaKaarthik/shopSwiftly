@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function Login() {
   const [loginData, setLoginData] = useState({
@@ -7,7 +8,7 @@ export default function Login() {
     password: "",
   });
 
-  const [validLogin, setValidLogin] = useState(false);
+  // const [validLogin, setValidLogin] = useState(false);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -19,13 +20,18 @@ export default function Login() {
     });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    alert("submit unsuccesful");
 
     //TODO
-    //on click Login Logic  
+    //on click Login Logic
 
+    axios
+      .post("http://localhost:5000/", loginData)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
