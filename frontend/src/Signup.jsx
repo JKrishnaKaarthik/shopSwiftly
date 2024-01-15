@@ -7,12 +7,12 @@ export default function SignUp() {
     lastName: "",
     email: "",
     DOB: "",
-    username: "",
+    userName: "",
     password: "",
     confirmPassword: "",
   });
 
-  const [validSignup, setValidSignup] = useState(false);
+  const [validSignup, setValidSignup] = useState("");
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -30,7 +30,7 @@ export default function SignUp() {
 
     //TODO
     //signup logic
-    console.log(signupData);
+    
     try {
       const response = await fetch("http://localhost:5000/signup", {
         method: "POST",
@@ -39,7 +39,6 @@ export default function SignUp() {
         },
         body: JSON.stringify(signupData),
       });
-      console.log("posted successfully");
       const responseData = await response.json();
       console.log("Form data sent successfully:", responseData);
     } catch (error) {
@@ -51,7 +50,7 @@ export default function SignUp() {
     <>
       <div className="signupDiv">
         <form action="" onSubmit={handleSubmit}>
-          {validSignup && <h3>password does not match</h3>}
+          {validSignup.length && <h3>{validSignup}</h3>}
           <label htmlFor="firstName">Firstname</label>
           <br />
           <input
@@ -96,14 +95,14 @@ export default function SignUp() {
             onChange={handleChange}
           />
           <br />
-          <label htmlFor="username">Username</label>
+          <label htmlFor="userName">Username</label>
           <br />
           <input
             type="text"
             placeholder="User Name"
-            name="username"
-            id="username"
-            value={signupData.username}
+            name="userName"
+            id="userName"
+            value={signupData.userName}
             onChange={handleChange}
           />
           <br />
