@@ -24,12 +24,27 @@ export default function SignUp() {
     });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     console.log("signup successful");
 
     //TODO
     //signup logic
+    console.log(signupData);
+    try {
+      const response = await fetch("http://localhost:5000/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(signupData),
+      });
+      console.log("posted successfully");
+      const responseData = await response.json();
+      console.log("Form data sent successfully:", responseData);
+    } catch (error) {
+      console.error("Error sending form data:", error);
+    }
   }
 
   return (
