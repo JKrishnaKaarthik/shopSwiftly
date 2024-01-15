@@ -14,7 +14,7 @@ app.post("/signup", (req, res) => {
   return res.json("successful data transfer");
 });
 
-console.log(getUsers());
+// console.log(getUsers());
 
 app.listen(port, () => {
   console.log(`Listening on ${port}`);

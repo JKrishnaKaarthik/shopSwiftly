@@ -29,8 +29,10 @@ export default function SignUp() {
     console.log("signup successful");
 
     //TODO
-    //signup logic
-    
+    //signup Validataion
+    // signupVadiation(signupData)
+
+
     try {
       const response = await fetch("http://localhost:5000/signup", {
         method: "POST",
@@ -50,7 +52,7 @@ export default function SignUp() {
     <>
       <div className="signupDiv">
         <form action="" onSubmit={handleSubmit}>
-          {validSignup.length && <h3>{validSignup}</h3>}
+          {validSignup.length !== 0 && <h3>{validSignup}</h3>}
           <label htmlFor="firstName">Firstname</label>
           <br />
           <input
