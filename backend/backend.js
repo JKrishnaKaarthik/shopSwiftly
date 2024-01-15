@@ -1,6 +1,6 @@
 import mysql from "mysql2";
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({path: '.env.local'});
 
 const dp = mysql
   .createPool({
@@ -27,7 +27,6 @@ export async function getUser(username) {
 
 export async function createUser(userDetails) {
   const createUserQuery = "INSERT INTO USERS VALUES(?, ?, ?, ?, ?, ?)";
-  console.log(userDetails.userName);
   const result = await dp.query(createUserQuery, [
     userDetails.userName,
     userDetails.password,
