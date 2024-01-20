@@ -1,26 +1,14 @@
 import React from "react";
+import "./header.css";
 
 export default function Header(props) {
   return (
-    <>
-       <div className="header">
-        <div className="grocery-cart-icon" />
-        <div className="rectangle">
-          <span className="your-orders">Your orders</span>
-          <div className="down-arrow" />
-        </div>
-        <div className="profile" />
-        <div className="rectangle-1">
-          <span className="hello-krishna">
-            Hello <br />
-            {props.username}
-          </span>
-        </div>
-        <span className="amazin">AMAZIN</span>
-        <div className="background">
-          <span className="text">Search</span>
-        </div>
+    <div className="header">
+      <h1 className="logo">AMAZIN</h1>
+      <div className="header-items">
+        <input type="text" placeholder="search" className="search" />
+        <img src="../assets/images/cart-img.png" alt="" />
       </div>
-    </>
+    </div>
   );
 }

@@ -7,18 +7,24 @@ import "./global.css";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState("krishna");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
+
+  console.log(loggedIn);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path="/"
-          element={<Login setCurrentUser={setCurrentUser} />}
+          element={
+            <Login setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} />
+          }
           exact
         ></Route>
         <Route path="/signup" element={<SignUp />}></Route>
-        {loggedIn && <Route path="/home" element={<Home username={currentUser} />}></Route>}
+        {loggedIn && (
+          <Route path="/home" element={<Home username={currentUser} />}></Route>
+        )}
       </Routes>
     </BrowserRouter>
   );

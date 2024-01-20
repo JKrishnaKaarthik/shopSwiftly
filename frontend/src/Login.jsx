@@ -32,8 +32,9 @@ export default function Login(props) {
       console.log(response.data);
       if (response.data.message === "login data send") {
         navigate("/home");
-        console.log(response.data.userName)
-        props.setCurrentUser(response.data.userName)
+        console.log(response.data.userName);
+        props.setCurrentUser(response.data.userName);
+        props.setLoggedIn(true);
       } else {
         alert("invalid username or password");
         setLoginData(initalState);

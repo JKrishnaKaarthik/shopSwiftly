@@ -1,0 +1,23 @@
+.header {
+  width: 100vw;
+  height: 15vh;
+  background: rgba(2, 2, 2, 0.9);
+  display: flex;
+  align-items: center;
+}
+
+.header-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
+
+.logo {
+  font-size: 2rem;
+  color: white;
+}
+
+.search {
+  align-self: auto;
+}
