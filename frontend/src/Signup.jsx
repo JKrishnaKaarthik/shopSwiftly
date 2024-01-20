@@ -15,7 +15,7 @@ export default function SignUp(props) {
   };
   const [signupData, setSignupData] = useState(initalState);
 
-  const [validSignup, setValidSignup] = useState("");
+  // const [validSignup, setValidSignup] = useState("");
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -29,21 +29,21 @@ export default function SignUp(props) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log("signup successful");
-
     //TODO
     //signup Validataion
-    // signupVadiation(signupData)
+    if (signupData.password !== signupData.confirmPassword) {
+      alert("password does not match");
+      return;
+    }
 
     axios
       .post("http://localhost:5000/signup", signupData)
       .then((res) => {
         console.log(res);
         setSignupData(initalState);
-        // props.setCurrentUser(signupData.userName);
-        // console.log(props.currentUser);
       })
       .catch((err) => console.log(err));
+    console.log("sign up successfull");
   }
 
   return (
@@ -51,12 +51,13 @@ export default function SignUp(props) {
       <div className="signup-block">
         <h2>Signup Page</h2>
         <form action="" onSubmit={handleSubmit} className="signup-form">
-          {validSignup.length !== 0 && <h3>{validSignup}</h3>}
+          {/* {validSignup.length !== 0 && <h3>{validSignup}</h3>} */}
           <label htmlFor="firstName" className="signup-label">
             Firstname
           </label>
           <br />
           <input
+            required
             className="signup-input"
             type="text"
             placeholder="First Name"
@@ -71,6 +72,7 @@ export default function SignUp(props) {
           </label>
           <br />
           <input
+            required
             className="signup-input"
             type="text"
             placeholder="Last Name"
@@ -85,6 +87,7 @@ export default function SignUp(props) {
           </label>
           <br />
           <input
+            required
             className="signup-input"
             type="email"
             placeholder="Email"
@@ -99,6 +102,7 @@ export default function SignUp(props) {
           </label>
           <br />
           <input
+            required
             className="signup-input"
             type="date"
             placeholder="DOB"
@@ -113,6 +117,7 @@ export default function SignUp(props) {
           </label>
           <br />
           <input
+            required
             className="signup-input"
             type="text"
             placeholder="User Name"
@@ -127,6 +132,7 @@ export default function SignUp(props) {
           </label>
           <br />
           <input
+            required
             className="signup-input"
             type="password"
             placeholder="password"
@@ -141,6 +147,7 @@ export default function SignUp(props) {
           </label>
           <br />
           <input
+            required
             className="signup-input"
             type="password"
             placeholder="confirm Password"
