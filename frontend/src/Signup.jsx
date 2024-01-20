@@ -158,7 +158,7 @@ export default function SignUp(props) {
           />
           <br />
           <button>submit</button>
-          <p>Account Exists?</p>
+          <p className="account-exists">Account Exists?</p>
           <Link to="/">
             <button>Login</button>
           </Link>
