@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Header() {
+export default function Header(props) {
   return (
     <>
        <div className="header">
@@ -13,7 +13,7 @@ export default function Header() {
         <div className="rectangle-1">
           <span className="hello-krishna">
             Hello <br />
-            Krishna
+            {props.username}
           </span>
         </div>
         <span className="amazin">AMAZIN</span>

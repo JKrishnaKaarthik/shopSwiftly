@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "./signup.css";
 
 export default function SignUp(props) {
   const initalState = {
@@ -46,13 +47,17 @@ export default function SignUp(props) {
   }
 
   return (
-    <>
-      <div className="signupDiv">
-        <form action="" onSubmit={handleSubmit}>
+    <div className="signup-div">
+      <div className="signup-block">
+        <h2>Signup Page</h2>
+        <form action="" onSubmit={handleSubmit} className="signup-form">
           {validSignup.length !== 0 && <h3>{validSignup}</h3>}
-          <label htmlFor="firstName">Firstname</label>
+          <label htmlFor="firstName" className="signup-label">
+            Firstname
+          </label>
           <br />
           <input
+            className="signup-input"
             type="text"
             placeholder="First Name"
             name="firstName"
@@ -61,9 +66,12 @@ export default function SignUp(props) {
             onChange={handleChange}
           />
           <br />
-          <label htmlFor="lastName">Lastname</label>
+          <label htmlFor="lastName" className="signup-label">
+            Lastname
+          </label>
           <br />
           <input
+            className="signup-input"
             type="text"
             placeholder="Last Name"
             name="lastName"
@@ -72,9 +80,12 @@ export default function SignUp(props) {
             onChange={handleChange}
           />
           <br />
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" className="signup-label">
+            Email
+          </label>
           <br />
           <input
+            className="signup-input"
             type="email"
             placeholder="Email"
             name="email"
@@ -83,9 +94,12 @@ export default function SignUp(props) {
             onChange={handleChange}
           />
           <br />
-          <label htmlFor="DOB">Date Of Birth</label>
+          <label htmlFor="DOB" className="signup-label">
+            Date Of Birth
+          </label>
           <br />
           <input
+            className="signup-input"
             type="date"
             placeholder="DOB"
             name="DOB"
@@ -94,9 +108,12 @@ export default function SignUp(props) {
             onChange={handleChange}
           />
           <br />
-          <label htmlFor="userName">Username</label>
+          <label htmlFor="userName" className="signup-label">
+            Username
+          </label>
           <br />
           <input
+            className="signup-input"
             type="text"
             placeholder="User Name"
             name="userName"
@@ -105,9 +122,12 @@ export default function SignUp(props) {
             onChange={handleChange}
           />
           <br />
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" className="signup-label">
+            Password
+          </label>
           <br />
           <input
+            className="signup-input"
             type="password"
             placeholder="password"
             name="password"
@@ -116,9 +136,12 @@ export default function SignUp(props) {
             onChange={handleChange}
           />
           <br />
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="confirmPassword" className="signup-label">
+            Confirm Password
+          </label>
           <br />
           <input
+            className="signup-input"
             type="password"
             placeholder="confirm Password"
             name="confirmPassword"
@@ -134,6 +157,6 @@ export default function SignUp(props) {
           </Link>
         </form>
       </div>
-    </>
+    </div>
   );
 }

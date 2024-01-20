@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./login.css";
 
-export default function Login() {
-  const [loginData, setLoginData] = useState({
+export default function Login(props) {
+  const initalState = {
     userName: "",
     password: "",
-  });
+  };
+  const [loginData, setLoginData] = useState(initalState);
 
   // const [validLogin, setValidLogin] = useState(false);
+
+  const navigate = useNavigate();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -23,25 +27,33 @@ export default function Login() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    //TODO
-    //on click Login Logic
-
-    axios
-      .post("http://localhost:5000/", loginData)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
+    try {
+      const response = await axios.post("http://localhost:5000/", loginData);
+      console.log(response.data);
+      if (response.data.message === "login data send") {
+        navigate("/home");
+        console.log(response.data.userName)
+        props.setCurrentUser(response.data.userName)
+      } else {
+        alert("invalid username or password");
+        setLoginData(initalState);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
-    <>
-      <h1>Login page</h1>
-      <div>
-        <form action="" onSubmit={handleSubmit}>
-          <label htmlFor="userName"></label>
+    <div className="login-main">
+      <div className="login-block">
+        <h1>Login page</h1>
+        <form action="" onSubmit={handleSubmit} className="login-form">
+          <label htmlFor="userName" className="login-label">
+            Username
+          </label>
           <br />
           <input
+            className="login-input"
             type="text"
             name="userName"
             id="userName"
@@ -49,9 +61,12 @@ export default function Login() {
             value={loginData.userName}
           />
           <br />
-          <label htmlFor="password"></label>
+          <label htmlFor="password" className="login-label">
+            password
+          </label>
           <br />
           <input
+            className="login-input"
             type="password"
             name="password"
             id="password"
@@ -62,11 +77,11 @@ export default function Login() {
           <button type="submit">Login</button>
           <br />
           <p>Create Account</p>
-          <Link to="/signup">
+          <Link to="/signup" className="Link">
             <button>Sign up</button>
           </Link>
         </form>
       </div>
-    </>
+    </div>
   );
 }
