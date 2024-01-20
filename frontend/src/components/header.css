@@ -9,15 +9,39 @@
 .header-items {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   margin-left: auto;
 }
 
 .logo {
   font-size: 2rem;
   color: white;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.cart-img {
+  width: 60px;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .search {
   align-self: auto;
+  height: 25px;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.your-orders {
+  width: 25%;
+  height: 40px;
+
+}
+
+.header-profile-icon {
+  width: 50px;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  /* height: 40px; */
 }
