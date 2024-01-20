@@ -6,7 +6,7 @@ import "./Home.css";
 
 export default function Home(props) {
   return (
-    <div>
+    <div className="Home">
       <Header username={props.username}/>
       <Category />
       <Footer />

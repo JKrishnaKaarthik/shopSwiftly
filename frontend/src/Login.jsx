@@ -76,7 +76,7 @@ export default function Login(props) {
           <br />
           <button type="submit">Login</button>
           <br />
-          <p>Create Account</p>
+          <p className="create-account">Create Account</p>
           <Link to="/signup" className="Link">
             <button>Sign up</button>
           </Link>

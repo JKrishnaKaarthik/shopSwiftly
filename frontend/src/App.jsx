@@ -3,11 +3,11 @@ import Home from "./Home/Home";
 import Login from "./Login";
 import SignUp from "./Signup";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./global.css"
+import "./global.css";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState("krishna");
-  console.log(currentUser);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <BrowserRouter>
@@ -18,7 +18,7 @@ export default function App() {
           exact
         ></Route>
         <Route path="/signup" element={<SignUp />}></Route>
-        <Route path="/home" element={<Home username={currentUser}/>}></Route>
+        {loggedIn && <Route path="/home" element={<Home username={currentUser} />}></Route>}
       </Routes>
     </BrowserRouter>
   );
