@@ -3,7 +3,6 @@ import box1 from "../categoryImages/images/box1_image.jpg";
 import "./category.css";
 
 export default function Category(props) {
-  console.log(box1);
   return (
     <div className="box">
       <div className="box-content">
