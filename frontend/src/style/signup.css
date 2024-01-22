@@ -62,4 +62,6 @@ form {
   justify-content: space-around;
 }
 
-
+button:hover {
+  background-color: #2da833;
+}

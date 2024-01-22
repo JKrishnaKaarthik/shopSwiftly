@@ -61,11 +61,6 @@ button {
   margin: 0px 0px 0px;
 }
 
-button:hover,
-.Link:hover {
-  background-color: #45a049;
-}
-
 .create-account {
   margin: 0px;
   font-size: 1.5rem;
@@ -79,4 +74,9 @@ h1 {
 /* Add some spacing around the form elements */
 form > * {
   margin-bottom: 10px;
+}
+
+
+button:hover {
+  background-color: #2da833;
 }
