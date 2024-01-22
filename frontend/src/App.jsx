@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Home from "./Home/Home";
+import Home from "./components/Home";
 import Login from "./components/Login";
 import SignUp from "./components/Signup";
 import Cart from "./components/Cart";
