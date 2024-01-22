@@ -1,6 +1,5 @@
 import React from "react";
-import box1 from "../categoryImages/images/box1_image.jpg";
-import "./category.css";
+import "../style/category.css"
 
 export default function Category(props) {
   return (
