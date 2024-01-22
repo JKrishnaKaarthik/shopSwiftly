@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Home from "./Home/Home";
-import Login from "./Login";
-import SignUp from "./Signup";
+import Login from "./components/Login";
+import SignUp from "./components/Signup";
+import Cart from "./components/Cart";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./global.css";
 
@@ -25,6 +26,7 @@ export default function App() {
         {loggedIn && (
           <Route path="/home" element={<Home username={currentUser} />}></Route>
         )}
+        <Route path="/cart" element={<Cart />}></Route>
       </Routes>
     </BrowserRouter>
   );
