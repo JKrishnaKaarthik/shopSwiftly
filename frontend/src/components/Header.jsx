@@ -18,6 +18,7 @@ export default function Header(props) {
         <input type="text" placeholder="search" className="search" />
         <img src={cart} alt="image of cart" className="cart-img" onClick={cartHandleClick}/>
         <button className="your-orders">your orders</button>
+        <button className="header-hello">Hello {props.username}</button>
         <img src={profile} alt="profile icon" className="header-profile-icon" />
       </div>
     </div>

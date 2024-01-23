@@ -25,26 +25,37 @@
 
 .cart-img {
   width: 60px;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .search {
   align-self: auto;
   height: 25px;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .your-orders {
   width: 25%;
   height: 40px;
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+  color: orange;
+}
 
+.header-hello {
+  width: 25%;
+  height: 40px;
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+  background-color: rgb(255, 115, 0);
+  color: rgba(10, 10, 186, 0.717);
 }
 
 .header-profile-icon {
   width: 50px;
-  margin-left: 1.5rem;
+  /* margin-left: 1rem; */
   margin-right: 1.5rem;
   /* height: 40px; */
 }

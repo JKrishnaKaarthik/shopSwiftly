@@ -26,7 +26,7 @@ export default function App() {
         {loggedIn && (
           <Route path="/home" element={<Home username={currentUser} />}></Route>
         )}
-        <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/cart" element={<Cart username={currentUser}/>}></Route>
       </Routes>
     </BrowserRouter>
   );
