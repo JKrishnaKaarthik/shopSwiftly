@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import SignUp from "./components/Signup";
 import Cart from "./components/Cart";
+import Products from "./components/Products";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./global.css";
 
@@ -26,7 +27,8 @@ export default function App() {
         {loggedIn && (
           <Route path="/home" element={<Home username={currentUser} />}></Route>
         )}
-        <Route path="/cart" element={<Cart username={currentUser}/>}></Route>
+        <Route path="/cart" element={<Cart username={currentUser} />}></Route>
+        <Route path="/products" element={<Products />}></Route>
       </Routes>
     </BrowserRouter>
   );
