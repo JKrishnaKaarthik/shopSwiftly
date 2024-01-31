@@ -2,6 +2,7 @@ import React, { createElement } from "react";
 import Header from "./Header";
 import { cartData } from "../data/cartData";
 import CartItem from "./CartItem";
+import CartSummary from "./CartSummary";
 
 export default function Cart(props) {
   // console.log(cartData);
@@ -16,7 +17,10 @@ export default function Cart(props) {
   return (
     <div>
       <Header username={props.username} />
-      {cartElements}
+      <div className="cart-body">
+        <div>{cartElements}</div>
+        <CartSummary />
+      </div>
     </div>
   );
 }
