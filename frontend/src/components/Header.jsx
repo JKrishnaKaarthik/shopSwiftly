@@ -8,8 +8,9 @@ export default function Header(props) {
   const navigate = useNavigate();
 
   function handleLogoClick() {
-    navigate("/");
+    navigate("/home");
   }
+
   function cartHandleClick() {
     //in case if there is a page reload necessary
     // window.location.reload(false);
