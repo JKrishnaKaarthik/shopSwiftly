@@ -23,7 +23,7 @@ export default function CartItem(props) {
           {props.title}
         </h4>
         <p>in Stock</p>
-        <p>{props.price}</p>
+        <p>₹{props.price}</p>
         <div className="cart-modify">
           <div className="cart-add-remove">
             <button className="cart-delete cart-remove" onClick={decrement}>

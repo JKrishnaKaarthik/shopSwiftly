@@ -6,6 +6,7 @@ import { getUsers, getUser, createUser } from "./backend.js";
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static("public"))
 const port = 5000;
 
 app.post("/", async (req, res) => {
