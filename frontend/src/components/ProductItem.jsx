@@ -1,11 +1,17 @@
 import React from "react";
-import "../style/ProductItem.css";
 import StarRating from "./StarRating";
+import "../style/ProductItem.css";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductItem(props) {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    props.setProductId(props.id)
+    navigate("/product");
+  };
   return (
     <div className="products-item-main">
-      <span className="products-image-container">
+      <span className="products-image-container" onClick={handleClick}>
         <img
           src={`http://localhost:5000/images/${props.url}`}
           alt="products image"

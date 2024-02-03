@@ -9,6 +9,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./global.css";
 
 export default function App() {
+  const [productId, setProductId] = useState(0);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -16,8 +18,14 @@ export default function App() {
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
-        <Route path="/products" element={<Products />}></Route>
-        <Route path="/product" element={<Product />}></Route>
+        <Route
+          path="/products"
+          element={<Products setProductId={setProductId} />}
+        ></Route>
+        <Route
+          path="/product"
+          element={<Product productId={productId} />}
+        ></Route>
       </Routes>
     </BrowserRouter>
   );
