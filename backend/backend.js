@@ -1,6 +1,6 @@
 import mysql from "mysql2";
 import dotenv from "dotenv";
-dotenv.config({path: '.env.local'});
+dotenv.config({ path: ".env.local" });
 
 const dp = mysql
   .createPool({
@@ -18,10 +18,8 @@ export async function getUsers() {
 }
 
 export async function getUser(username) {
-  const getUserQuery = "select * from users where username = ?"
-  const [user] = await dp.query(getUserQuery, [
-    username,
-  ]);
+  const getUserQuery = "select * from users where username = ?";
+  const [user] = await dp.query(getUserQuery, [username]);
   return user;
 }
 
@@ -37,4 +35,10 @@ export async function createUser(userDetails) {
   ]);
   const [userDetail] = await getUser(userDetails.userName);
   return userDetail;
+}
+
+export async function getProduct() {
+  const getProductQuery = "select * from products";
+  const result = await dp.query("select * from products");
+  return result;
 }

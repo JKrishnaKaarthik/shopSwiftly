@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { getUsers, getUser, createUser } from "./backend.js";
+import { getUser, createUser, getProduct } from "./backend.js";
 
 const app = express();
 app.use(cors());
@@ -10,9 +10,7 @@ app.use(express.static("public"));
 const port = 5000;
 
 app.post("/", async (req, res) => {
-  console.log(req.body);
   const [result] = await getUser(req.body.userName);
-  console.log(result);
   if (
     result.username === req.body.userName &&
     result.password === req.body.password
@@ -27,6 +25,11 @@ app.post("/signup", async (req, res) => {
   console.log(req.body);
   createUser(req.body);
   return res.json("successful data transfer");
+});
+
+app.get("/products", async (req, res) => {
+  const result = await getProduct();
+  return res.json(result);
 });
 
 app.listen(port, () => {
