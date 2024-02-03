@@ -7,7 +7,7 @@ export default function ProductItem(props) {
     <div className="product-item-main">
       <span className="product-image-container">
         <img
-          src={`src/productsImages/${props.url}`}
+          src={`http://localhost:5000/images/${props.url}`}
           alt="product image"
           className="product-image"
         />
