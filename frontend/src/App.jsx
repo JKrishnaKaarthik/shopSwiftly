@@ -8,26 +8,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./global.css";
 
 export default function App() {
-  const [currentUser, setCurrentUser] = useState("krishna");
-  const [loggedIn, setLoggedIn] = useState(true);
-
-  console.log(loggedIn);
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Login setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} />
-          }
-          exact
-        ></Route>
+        <Route path="/" element={<Login />} exact></Route>
         <Route path="/signup" element={<SignUp />}></Route>
-        {loggedIn && (
-          <Route path="/home" element={<Home username={currentUser} />}></Route>
-        )}
-        <Route path="/cart" element={<Cart username={currentUser} />}></Route>
+        <Route path="/home" element={<Home />}></Route>
+        <Route path="/cart" element={<Cart />}></Route>
         <Route path="/products" element={<Products />}></Route>
       </Routes>
     </BrowserRouter>

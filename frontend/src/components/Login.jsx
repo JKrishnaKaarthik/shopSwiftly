@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 // import "/login.css";
-import "../style/login.css"
+import "../style/login.css";
 
 export default function Login(props) {
   const initalState = {
@@ -33,9 +33,7 @@ export default function Login(props) {
       console.log(response.data);
       if (response.data.message === "login data send") {
         navigate("/home");
-        console.log(response.data.userName);
-        props.setCurrentUser(response.data.userName);
-        props.setLoggedIn(true);
+        localStorage.setItem("username", response.data.userName);
       } else {
         alert("invalid username or password");
         setLoginData(initalState);

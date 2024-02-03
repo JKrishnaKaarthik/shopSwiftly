@@ -4,7 +4,7 @@ import profile from "../assets/images/profile.png";
 import "../style/header.css";
 import { useNavigate } from "react-router-dom";
 
-export default function Header(props) {
+export default function Header() {
   const navigate = useNavigate();
 
   function handleLogoClick() {
@@ -30,7 +30,9 @@ export default function Header(props) {
           onClick={cartHandleClick}
         />
         <button className="your-orders">your orders</button>
-        <button className="header-hello">Hello {props.username}</button>
+        <button className="header-hello">
+          Hello {localStorage.getItem("username")}
+        </button>
         <img src={profile} alt="profile icon" className="header-profile-icon" />
       </div>
     </div>
