@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { getUser, createUser } from "./backend.js";
+import { getUser, createUser, getProduct } from "./backend.js";
 
 const app = express();
 app.use(cors());

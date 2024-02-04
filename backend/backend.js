@@ -39,6 +39,6 @@ export async function createUser(userDetails) {
 
 export async function getProduct() {
   const getProductQuery = "select * from products";
-  const result = await dp.query("select * from products");
+  const result = await dp.query(getProductQuery);
   return result;
 }
