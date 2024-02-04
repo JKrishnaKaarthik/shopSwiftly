@@ -3,30 +3,16 @@ import Header from "./Header";
 import { productData } from "../data/productData";
 import StarRating from "./StarRating";
 import "../style/product.css";
-import { useState } from "react";
-// import axios from "axios";
 
 export default function product(props) {
   const item_id = props.productId - 1;
-  // const [productDetails, setProductDetails] = useState(productData[item_id]);
   const productDetails = productData[item_id];
-  // const [product, setProduct] = useState();
-  // if (product) {
   const res = productDetails.description.split("\n");
   const pragarphElem = res.map((item, id) => (
     <li className="product-desc-list" key={id}>
       {item}
     </li>
   ));
-  // }
-  // console.log(product);
-  // useEffect(() => {
-  //   const getProducts = async () => {
-  //     const res = await axios.get("http://localhost:5000/products");
-  //     setProduct(res.data[id][id].description);
-  //   };
-  //   getProducts();
-  // }, []);
   return (
     <div>
       <Header />

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function ProductItem(props) {
   const navigate = useNavigate();
   const handleClick = () => {
-    props.setProductId(props.id)
+    props.setProductId(props.id);
     navigate("/product");
   };
   return (
@@ -23,12 +23,6 @@ export default function ProductItem(props) {
           <strong>{props.brand}</strong>
         </p>
         <p className="products-title">{props.title}</p>
-        {/* {props.ratingCount > 0 && (
-          <div className="products-rating">
-            <StarRating />
-            <h5 className="products-rating-count">{props.ratingCount}</h5>
-          </div>
-        )} */}
         <div className="products-rating">
           <StarRating />
           <h5 className="products-rating-count">{props.ratingCount}</h5>

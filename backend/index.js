@@ -27,10 +27,10 @@ app.post("/signup", async (req, res) => {
   return res.json("successful data transfer");
 });
 
-// app.get("/products", async (req, res) => {
-//   const result = await getProduct();
-//   return res.json(result);
-// });
+app.get("/products", async (req, res) => {
+  const result = await getProduct();
+  return res.json(result);
+});
 
 app.listen(port, () => {
   console.log(`Listening on ${port}`);
