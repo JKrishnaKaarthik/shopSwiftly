@@ -43,12 +43,8 @@ export async function getProducts() {
   return result;
 }
 
-export async function getProduct() {
-  const id = 1;
+export async function getProduct(id) {
   const getProductQuery = "select * from products where product_id = ?";
   const [result] = await dp.query(getProductQuery, [id]);
-  // console.log(result[0]);
-  if (result) {
-    return result[0];
-  }
+  return result[0];
 }

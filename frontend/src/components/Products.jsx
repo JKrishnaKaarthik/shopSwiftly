@@ -3,7 +3,7 @@ import Header from "./Header";
 import ProductItem from "./ProductItem";
 import axios from "axios";
 
-export default function Products(props) {
+export default function Products() {
   const [productsDetails, setProductsDetails] = useState();
 
   useEffect(() => {
@@ -31,7 +31,6 @@ export default function Products(props) {
           title={item.title}
           ratingCount={item.ratingCount}
           price={item.price}
-          setProductId={props.setProductId}
         />
       );
     });

@@ -7,7 +7,7 @@ export default function ProductItem(props) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    props.setProductId(props.id);
+    localStorage.setItem("productId", props.id);
     navigate("/product");
   };
 

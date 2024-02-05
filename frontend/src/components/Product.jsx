@@ -1,42 +1,38 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
-import { productData } from "../data/productData";
 import StarRating from "./StarRating";
 import "../style/product.css";
+import axios from "axios";
 
-export default function product(props) {
-  // const [id, setId] = useState();
+export default function Product() {
+  const initalState = {
+    id: 1,
+    url: "",
+    brand: "",
+    ratingCount: 0,
+    rating: 0,
+    description: "",
+    title: "",
+    price: "",
+  };
+  const [productInfo, setProductInfo] = useState(initalState);
+  console.log(productInfo);
 
-  // if (props.productId) {
-  //   setId(props.productId);
-  // }
-  // let pragarphElem;
-  // let productDetails;
-  // useEffect(() => {
-  //   const item_id = props.productId - 1;
-  //   productDetails = productData[item_id];
-  //   const res = productDetails.description.split("\n");
-  //   pragarphElem = res.map((item, id) => (
-  //     <li className="product-desc-list" key={id}>
-  //       {item}
-  //     </li>
-  //   ));
-  // }, []);
-
-  const item_id = props.productId - 1;
-  const productDetails = productData[item_id];
-  const res = productDetails.description.split("\n");
+  const res = productInfo.description.split("\n");
   const pragarphElem = res.map((item, id) => (
     <li className="product-desc-list" key={id}>
       {item}
     </li>
   ));
 
-  // const [productInfo, setProductsInfo] = useState();
-
-  // useEffect(() => {
-  //   console.log("data loading");
-  // }, []);
+  React.useEffect(() => {
+    const getProduct = async (productId) => {
+      const res = await axios.get(`http://localhost:5000/product/${productId}`);
+      setProductInfo(res.data);
+    };
+    const productId = localStorage.getItem("productId");
+    getProduct(productId);
+  }, []);
 
   return (
     <div>
@@ -44,25 +40,23 @@ export default function product(props) {
       <div className="product-main">
         <span className="product-image-container">
           <img
-            src={`src/productsImages/${productDetails.url}`}
+            src={`src/productsImages/${productInfo.image}`}
             alt="product image"
             className="product-image"
           />
         </span>
         <div className="product-details">
-          <h2 className="product-title">{productDetails.title}</h2>
-          <p className="product-brand">brand:{productDetails.brand}</p>
+          <h2 className="product-title">{productInfo.title}</h2>
+          <p className="product-brand">brand:{productInfo.brand}</p>
           <span className="product-rating-span">
-            <span className="product-rating-value">
-              {productDetails.rating}
-            </span>
+            <span className="product-rating-value">{productInfo.rating}</span>
             <StarRating />
             <span className="product-rating-count">
-              {productDetails.ratingCount}
+              {productInfo.ratingCount}
             </span>
           </span>
           <h3 className="product-in-stock">In stock</h3>
-          <h3 className="product-price">₹{productDetails.price}</h3>
+          <h3 className="product-price">₹{productInfo.price}</h3>
           <div className="product-buttons">
             <button className="product-buy-buttons">Add to Cart</button>
             <button className="product-buy-buttons">Buy Now</button>
