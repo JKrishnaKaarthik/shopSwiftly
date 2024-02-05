@@ -1,31 +1,32 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import ProductItem from "./ProductItem";
-import { productData } from "../data/productData";
 import axios from "axios";
 
 export default function Products(props) {
-  const [productDetails, setProductDetails] = useState();
+  const [productsDetails, setProductsDetails] = useState();
 
   useEffect(() => {
     const getProduct = async () => {
-      const res = await axios.get("http://localhost:5000/products");
-      console.log(res.data[0]);
-      setProductDetails(res.data[0]);
-      console.log("getting data");
+      try {
+        const res = await axios.get("http://localhost:5000/products");
+        setProductsDetails(res.data[0]);
+      } catch (err) {
+        console.log(err);
+      }
     };
     getProduct();
   }, []);
 
   let productElements;
 
-  if (productDetails) {
-    productElements = productDetails.map((item) => {
+  if (productsDetails) {
+    productElements = productsDetails.map((item) => {
       return (
         <ProductItem
           key={item.product_id}
           id={item.product_id}
-          url={item.image}
+          image={item.image}
           brand={item.brand}
           title={item.title}
           ratingCount={item.ratingCount}

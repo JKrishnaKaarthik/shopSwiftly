@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { productData } from "../data/productData";
 import StarRating from "./StarRating";
 import "../style/product.css";
 
 export default function product(props) {
+  // const [id, setId] = useState();
+
+  // if (props.productId) {
+  //   setId(props.productId);
+  // }
+  // let pragarphElem;
+  // let productDetails;
+  // useEffect(() => {
+  //   const item_id = props.productId - 1;
+  //   productDetails = productData[item_id];
+  //   const res = productDetails.description.split("\n");
+  //   pragarphElem = res.map((item, id) => (
+  //     <li className="product-desc-list" key={id}>
+  //       {item}
+  //     </li>
+  //   ));
+  // }, []);
+
   const item_id = props.productId - 1;
   const productDetails = productData[item_id];
   const res = productDetails.description.split("\n");
@@ -13,6 +31,13 @@ export default function product(props) {
       {item}
     </li>
   ));
+
+  // const [productInfo, setProductsInfo] = useState();
+
+  // useEffect(() => {
+  //   console.log("data loading");
+  // }, []);
+
   return (
     <div>
       <Header />

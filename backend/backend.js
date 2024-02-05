@@ -37,8 +37,18 @@ export async function createUser(userDetails) {
   return userDetail;
 }
 
-export async function getProduct() {
-  const getProductQuery = "select * from products";
-  const result = await dp.query(getProductQuery);
+export async function getProducts() {
+  const getProductsQuery = "select * from products";
+  const result = await dp.query(getProductsQuery);
   return result;
+}
+
+export async function getProduct() {
+  const id = 1;
+  const getProductQuery = "select * from products where product_id = ?";
+  const [result] = await dp.query(getProductQuery, [id]);
+  // console.log(result[0]);
+  if (result) {
+    return result[0];
+  }
 }

@@ -5,15 +5,17 @@ import { useNavigate } from "react-router-dom";
 
 export default function ProductItem(props) {
   const navigate = useNavigate();
+
   const handleClick = () => {
     props.setProductId(props.id);
     navigate("/product");
   };
+
   return (
     <div className="products-item-main">
       <span className="products-image-container" onClick={handleClick}>
         <img
-          src={`http://localhost:5000/images/${props.url}`}
+          src={`http://localhost:5000/images/${props.image}`}
           alt="products image"
           className="products-image"
         />
@@ -22,7 +24,9 @@ export default function ProductItem(props) {
         <p className="products-brand">
           <strong>{props.brand}</strong>
         </p>
-        <p className="products-title">{props.title}</p>
+        <p className="products-title" onClick={handleClick}>
+          {props.title}
+        </p>
         <div className="products-rating">
           <StarRating />
           <h5 className="products-rating-count">{props.ratingCount}</h5>

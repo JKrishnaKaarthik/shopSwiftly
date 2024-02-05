@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { getUser, createUser, getProduct } from "./backend.js";
+import { getUser, createUser, getProducts } from "./backend.js";
 
 const app = express();
 app.use(cors());
@@ -28,8 +28,12 @@ app.post("/signup", async (req, res) => {
 });
 
 app.get("/products", async (req, res) => {
-  const result = await getProduct();
+  const result = await getProducts();
   return res.json(result);
+});
+
+app.get("/product/:id", async (req, res) => {
+  console.log("got the product data");
 });
 
 app.listen(port, () => {
