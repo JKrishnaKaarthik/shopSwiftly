@@ -1,28 +1,28 @@
 import React, { useState } from "react";
 import "../style/cart.css";
-import img1 from "../cartImages/image1.jpg";
 
 export default function CartItem(props) {
   const [quantity, setQuantity] = useState(0);
+
   function increment() {
     setQuantity((prevQuantity) => prevQuantity + 1);
   }
+
   function decrement() {
     setQuantity((prevQuantity) =>
       prevQuantity > 0 ? prevQuantity - 1 : prevQuantity
     );
   }
 
-  // console.log(props);
-  // console.log(`/src/cartImages/${props.url}`)
   return (
     <div className="cart-item">
-      <img src={`/src/cartImages/${props.url}`} alt="product image" className="cart-prod-img" />
+      <img
+        src={`/src/cartImages/${props.url}`}
+        alt="product image"
+        className="cart-prod-img"
+      />
       <div className="cart-desc">
-        <h4>
-          {props.title}
-        </h4>
-        <p>in Stock</p>
+        <h4>{props.title}</h4>
         <p>₹{props.price}</p>
         <div className="cart-modify">
           <div className="cart-add-remove">
@@ -34,7 +34,12 @@ export default function CartItem(props) {
               +
             </button>
           </div>
-          <button className="cart-delete">delete</button>
+          <button
+            className="cart-delete"
+            onClick={() => props.deleteCartItem(props.id)}
+          >
+            delete
+          </button>
         </div>
       </div>
     </div>
