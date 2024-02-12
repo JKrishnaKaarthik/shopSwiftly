@@ -28,11 +28,11 @@ export default function ProductItem(props) {
           {props.title}
         </p>
         <div className="products-rating">
+          <p>{props.rating}</p>
           <StarRating />
           <h5 className="products-rating-count">{props.ratingCount}</h5>
         </div>
         <p className="products-price">₹{props.price}</p>
-        <button className="add-to-cart">Add to Cart</button>
       </div>
     </div>
   );

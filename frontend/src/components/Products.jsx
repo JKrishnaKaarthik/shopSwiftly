@@ -31,6 +31,7 @@ export default function Products() {
           title={item.title}
           ratingCount={item.ratingCount}
           price={item.price}
+          rating={item.rating}
         />
       );
     });
