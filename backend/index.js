@@ -1,7 +1,13 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { getUser, createUser, getProducts, getProduct } from "./backend.js";
+import {
+  getUser,
+  createUser,
+  getProducts,
+  getProduct,
+  getCartItems,
+} from "./backend.js";
 
 const app = express();
 app.use(cors());
@@ -35,6 +41,12 @@ app.get("/products", async (req, res) => {
 app.get("/product/:id", async (req, res) => {
   const result = await getProduct(req.params.id);
   return res.json(result);
+});
+
+app.get("/cart/:username", async (req, res) => {
+  const result = await getCartItems();
+  console.log(result);
+  return res.json({ status: "cart items", data: result });
 });
 
 app.listen(port, () => {

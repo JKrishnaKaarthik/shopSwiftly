@@ -16,14 +16,15 @@ export default function Product() {
     price: "",
   };
   const [productInfo, setProductInfo] = useState(initalState);
-  console.log(productInfo);
 
   const res = productInfo.description.split("\n");
   const pragarphElem = res.map((item, id) => (
-    <li className="product-desc-list" key={id}>
+    item !== "" && <li className="product-desc-list" key={id}>
       {item}
     </li>
   ));
+
+  console.log(res);
 
   React.useEffect(() => {
     const getProduct = async (productId) => {

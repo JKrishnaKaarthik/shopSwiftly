@@ -21,7 +21,7 @@ export default function CartItem(props) {
   return (
     <div className="cart-item">
       <img
-        src={`/src/cartImages/${props.url}`}
+        src={`http://localhost:5000/images/${props.image}`}
         alt="product image"
         className="cart-prod-img"
       />

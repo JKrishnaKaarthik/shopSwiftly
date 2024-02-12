@@ -48,3 +48,12 @@ export async function getProduct(id) {
   const [result] = await dp.query(getProductQuery, [id]);
   return result[0];
 }
+
+export async function getCartItems() {
+  const getCartItemsQuery =
+    "select * from products p, users u, cart c where p.product_id = c.product_id and u.username = c.username order by addTime desc;";
+  const [result] = await dp.query(getCartItemsQuery);
+  console.log(result);
+  return result;
+}
+
