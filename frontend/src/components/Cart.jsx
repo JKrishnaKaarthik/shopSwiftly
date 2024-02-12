@@ -1,13 +1,20 @@
-import React, { createElement, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
-import { cartData } from "../data/cartData";
 import CartItem from "./CartItem";
 import CartSummary from "./CartSummary";
 import axios from "axios";
 
 export default function Cart(props) {
-  const [cartDetails, setCartDetails] = useState(cartData || []);
-  // console.log(cartDetails);
+  const initalState = [
+    {
+      cart_id: 0,
+      image: "",
+      title: "",
+      price: "",
+    },
+  ];
+
+  const [cartDetails, setCartDetails] = useState(initalState || []);
 
   const deleteCartItem = (id) => {
     setCartDetails((prevCartDetails) =>
@@ -18,7 +25,6 @@ export default function Cart(props) {
   };
 
   const username = localStorage.getItem("username");
-  //write a get request using axios to get the cart items from the server with username from local storage and store it to a state
   useEffect(() => {
     const getCartItems = async () => {
       const res = await axios.get(`http://localhost:5000/cart/${username}`);
@@ -26,8 +32,6 @@ export default function Cart(props) {
     };
     getCartItems();
   }, []);
-
-  console.log(localStorage.getItem("username"));
 
   const cartElements = cartDetails.map((item) => {
     console.log(item);

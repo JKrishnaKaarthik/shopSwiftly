@@ -44,9 +44,15 @@ app.get("/product/:id", async (req, res) => {
 });
 
 app.get("/cart/:username", async (req, res) => {
-  const result = await getCartItems();
-  console.log(result);
-  return res.json({ status: "cart items", data: result });
+  try {
+    const result = await getCartItems(req.params.username);
+    return res.json({ status: "success", data: result });
+  } catch (error) {
+    console.error("Error retrieving cart items:", error);
+    return res
+      .status(500)
+      .json({ status: "error", message: "Failed to retrieve cart items" });
+  }
 });
 
 app.listen(port, () => {
