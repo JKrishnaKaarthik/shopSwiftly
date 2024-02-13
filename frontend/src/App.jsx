@@ -7,6 +7,7 @@ import Products from "./components/Products";
 import Product from "./components/Product";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./global.css";
+import PurchaseCompletion from "./components/PurchaseCompletion";
 
 export default function App() {
   const [productId, setProductId] = useState(0);
@@ -26,6 +27,7 @@ export default function App() {
           path="/product"
           element={<Product productId={productId} />}
         ></Route>
+        <Route path="/completePurchase" element={<PurchaseCompletion />} />
       </Routes>
     </BrowserRouter>
   );

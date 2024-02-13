@@ -3,6 +3,7 @@ import Header from "./Header";
 import StarRating from "./StarRating";
 import "../style/product.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Product() {
   const initalState = {
@@ -16,27 +17,33 @@ export default function Product() {
     price: "",
   };
   const [productInfo, setProductInfo] = useState(initalState);
+  const navigate = useNavigate();
 
   const res = productInfo.description.split("\n");
-  const pragarphElem = res.map((item, id) => (
-    item !== "" && <li className="product-desc-list" key={id}>
-      {item}
-    </li>
-  ));
+  const pragarphElem = res.map(
+    (item, id) =>
+      item !== "" && (
+        <li className="product-desc-list" key={id}>
+          {item}
+        </li>
+      )
+  );
 
-  console.log(res);
-
-  const handleAddToCart = async() => {
+  const handleAddToCart = async () => {
     const username = localStorage.getItem("username");
     const productId = localStorage.getItem("productId");
     const res = await axios.post(`http://localhost:5000/cart`, {
       productId: productId,
-      username:username
+      username: username,
     });
-    console.log(res);
-  }
+    navigate("/cart");
+  };
 
-  React.useEffect(() => {
+  const handleBuyNow = async () => {
+    navigate("/completePurchase");
+  };
+
+  useEffect(() => {
     const getProduct = async (productId) => {
       const res = await axios.get(`http://localhost:5000/product/${productId}`);
       setProductInfo(res.data);
@@ -69,8 +76,12 @@ export default function Product() {
           <h3 className="product-in-stock">In stock</h3>
           <h3 className="product-price">₹{productInfo.price}</h3>
           <div className="product-buttons">
-            <button className="product-buy-buttons" onClick={handleAddToCart}>Add to Cart</button>
-            <button className="product-buy-buttons">Buy Now</button>
+            <button className="product-buy-buttons" onClick={handleAddToCart}>
+              Add to Cart
+            </button>
+            <button className="product-buy-buttons" onClick={handleBuyNow}>
+              Buy Now
+            </button>
           </div>
           <span className="product-description">
             <h4 className="product-about-item">About the item</h4>
