@@ -15,6 +15,7 @@ export default function Cart(props) {
   ];
 
   const [cartDetails, setCartDetails] = useState(initalState || []);
+  const [total, setTotal] = useState(0);
 
   const username = localStorage.getItem("username");
   const deleteCartItem = async (id) => {
@@ -26,6 +27,24 @@ export default function Cart(props) {
     }
   };
 
+  //to convert the price of item from string to number and then add them and covert back to string
+  useEffect(() => {
+    function addNumbersWithCommas(numbersArray) {
+      let numbers = [];
+      numbersArray.map((item) => {
+        numbers.push(parseInt(item.price.replace(/,/g, ""), 10));
+      });
+      const sum = numbers.reduce(
+        (accumulator, currentValue) => accumulator + currentValue,
+        0
+      );
+      const sumString = sum.toLocaleString();
+      return sumString;
+    }
+    setTotal(addNumbersWithCommas(cartDetails));
+  }, [cartDetails]);
+
+  //to get the cart items from the database
   useEffect(() => {
     const getCartItems = async () => {
       const res = await axios.get(`http://localhost:5000/cart/${username}`);
@@ -34,7 +53,10 @@ export default function Cart(props) {
     getCartItems();
   }, []);
 
-  const cartElements = cartDetails.map((item) => {
+
+  //to generate all the cart items to render on the page
+  let cartElements;
+  cartElements = cartDetails.map((item) => {
     return (
       <CartItem
         key={item.cart_id}
@@ -52,7 +74,7 @@ export default function Cart(props) {
       <Header username={props.username} />
       <div className="cart-body">
         <div>{cartElements}</div>
-        <CartSummary />
+        <CartSummary total={total} />
       </div>
     </div>
   );
