@@ -13,7 +13,6 @@ const dp = mysql
 
 export async function getUsers() {
   const [users] = await dp.query("select * from users");
-  console.log(users);
   return users;
 }
 
@@ -58,7 +57,6 @@ export async function getCartItems(username) {
 
 export async function addToCart(username, productId) {
   productId = parseInt(productId);
-  console.log(username, productId);
   const addToCartQuery = "INSERT INTO cart (product_id, username) VALUES(?, ?)";
   const [result] = await dp.query(addToCartQuery, [productId, username]);
   return result;

@@ -30,7 +30,6 @@ app.post("/", async (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-  console.log(req.body);
   createUser(req.body);
   return res.json("successful data transfer");
 });
@@ -58,7 +57,6 @@ app.get("/cart/:username", async (req, res) => {
 });
 
 app.post("/cart", async (req, res) => {
-  console.log(req.body);
   try {
     const result = await addToCart(req.body.username, req.body.productId);
     return res.json("successful data transfer");
@@ -69,7 +67,6 @@ app.post("/cart", async (req, res) => {
 });
 
 app.delete("/cart/:productID", async (req, res) => {
-  console.log(req.params);
   const productId = parseInt(req.params.productID);
   const result = await deleteCartItem(productId);
   console.log(result);
