@@ -16,16 +16,16 @@ export default function Cart(props) {
 
   const [cartDetails, setCartDetails] = useState(initalState || []);
 
-  const deleteCartItem = (id) => {
-    console.log(id);
-    setCartDetails((prevCartDetails) =>
-      prevCartDetails.map((cartItem) =>
-        id === cartItem.id ? { ...cartItem, isAdded: false } : cartItem
-      )
-    );
+  const username = localStorage.getItem("username");
+  const deleteCartItem = async (id) => {
+    try {
+      const result = await axios.delete(`http://localhost:5000/cart/${id}`);
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const username = localStorage.getItem("username");
   useEffect(() => {
     const getCartItems = async () => {
       const res = await axios.get(`http://localhost:5000/cart/${username}`);

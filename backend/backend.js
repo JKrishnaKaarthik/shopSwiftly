@@ -63,3 +63,9 @@ export async function addToCart(username, productId) {
   const [result] = await dp.query(addToCartQuery, [productId, username]);
   return result;
 }
+
+export async function deleteCartItem(cartId) {
+  const deleteCartItemQuery = "DELETE FROM cart WHERE cart_id = ?";
+  const [result] = await dp.query(deleteCartItemQuery, [cartId]);
+  return result;
+}

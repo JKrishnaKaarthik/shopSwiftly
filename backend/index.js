@@ -8,6 +8,7 @@ import {
   getProduct,
   getCartItems,
   addToCart,
+  deleteCartItem,
 } from "./backend.js";
 
 const app = express();
@@ -65,6 +66,14 @@ app.post("/cart", async (req, res) => {
     console.log(err);
     return res.json("unsuccessful data transfer");
   }
+});
+
+app.delete("/cart/:productID", async (req, res) => {
+  console.log(req.params);
+  const productId = parseInt(req.params.productID);
+  const result = await deleteCartItem(productId);
+  console.log(result);
+  return res.json("successful data transfer");
 });
 
 app.listen(port, () => {
