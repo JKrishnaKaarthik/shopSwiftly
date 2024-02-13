@@ -51,7 +51,7 @@ export default function Product() {
       <div className="product-main">
         <span className="product-image-container">
           <img
-            src={`src/productsImages/${productInfo.image}`}
+            src={`http://localhost:5000/images/${productInfo.image}`}
             alt="product image"
             className="product-image"
           />

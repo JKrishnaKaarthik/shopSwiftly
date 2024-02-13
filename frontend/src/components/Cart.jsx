@@ -21,7 +21,7 @@ export default function Cart(props) {
   const deleteCartItem = async (id) => {
     try {
       const result = await axios.delete(`http://localhost:5000/cart/${id}`);
-      console.log(result);
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -52,7 +52,6 @@ export default function Cart(props) {
     };
     getCartItems();
   }, []);
-
 
   //to generate all the cart items to render on the page
   let cartElements;

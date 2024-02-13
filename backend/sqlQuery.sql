@@ -182,28 +182,12 @@ its stainless steel lifter keep the insides of the washing machine hygienic ",
         1
     );
 
+
+--do not use these below insert statement 
 INSERT INTO
     cart (product_id, username)
 VALUES
-    (1, 'JKrishnaKaarthik');
-
-select
-    *
-from
-    cart;
-
-INSERT INTO
-    cart (product_id, username)
-VALUES
-    (3, 'JKrishnaKaarthik');
-
-INSERT INTO
-    cart (product_id, username)
-VALUES
+    (1, 'JKrishnaKaarthik'),
+    (3, 'JKrishnaKaarthik'),
     (4, " krishna1 "),
     (3, " krishna1 ");
-
-INSERT INTO
-    cart (product_id, username)
-VALUES
-    (4, " JKrishnaKaarthik ");
