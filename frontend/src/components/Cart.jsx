@@ -17,6 +17,7 @@ export default function Cart(props) {
   const [cartDetails, setCartDetails] = useState(initalState || []);
 
   const deleteCartItem = (id) => {
+    console.log(id);
     setCartDetails((prevCartDetails) =>
       prevCartDetails.map((cartItem) =>
         id === cartItem.id ? { ...cartItem, isAdded: false } : cartItem
@@ -34,7 +35,6 @@ export default function Cart(props) {
   }, []);
 
   const cartElements = cartDetails.map((item) => {
-    console.log(item);
     return (
       <CartItem
         key={item.cart_id}

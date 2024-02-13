@@ -26,6 +26,16 @@ export default function Product() {
 
   console.log(res);
 
+  const handleAddToCart = async() => {
+    const username = localStorage.getItem("username");
+    const productId = localStorage.getItem("productId");
+    const res = await axios.post(`http://localhost:5000/cart`, {
+      productId: productId,
+      username:username
+    });
+    console.log(res);
+  }
+
   React.useEffect(() => {
     const getProduct = async (productId) => {
       const res = await axios.get(`http://localhost:5000/product/${productId}`);
@@ -59,7 +69,7 @@ export default function Product() {
           <h3 className="product-in-stock">In stock</h3>
           <h3 className="product-price">₹{productInfo.price}</h3>
           <div className="product-buttons">
-            <button className="product-buy-buttons">Add to Cart</button>
+            <button className="product-buy-buttons" onClick={handleAddToCart}>Add to Cart</button>
             <button className="product-buy-buttons">Buy Now</button>
           </div>
           <span className="product-description">

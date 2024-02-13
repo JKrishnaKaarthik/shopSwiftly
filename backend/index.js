@@ -7,6 +7,7 @@ import {
   getProducts,
   getProduct,
   getCartItems,
+  addToCart,
 } from "./backend.js";
 
 const app = express();
@@ -52,6 +53,17 @@ app.get("/cart/:username", async (req, res) => {
     return res
       .status(500)
       .json({ status: "error", message: "Failed to retrieve cart items" });
+  }
+});
+
+app.post("/cart", async (req, res) => {
+  console.log(req.body);
+  try {
+    const result = await addToCart(req.body.username, req.body.productId);
+    return res.json("successful data transfer");
+  } catch (err) {
+    console.log(err);
+    return res.json("unsuccessful data transfer");
   }
 });
 

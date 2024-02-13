@@ -55,3 +55,11 @@ export async function getCartItems(username) {
   const [result] = await dp.query(getCartItemsQuery, [username]);
   return result;
 }
+
+export async function addToCart(username, productId) {
+  productId = parseInt(productId);
+  console.log(username, productId);
+  const addToCartQuery = "INSERT INTO cart (product_id, username) VALUES(?, ?)";
+  const [result] = await dp.query(addToCartQuery, [productId, username]);
+  return result;
+}

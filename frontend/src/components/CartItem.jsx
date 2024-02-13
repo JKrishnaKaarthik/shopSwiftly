@@ -4,9 +4,9 @@ import "../style/cart.css";
 export default function CartItem(props) {
   const [quantity, setQuantity] = useState(1);
 
-  if (quantity === 0) {
-    props.deleteCartItem(props.id);
-  }
+  // if (quantity === 0) {
+  //   props.deleteCartItem(props.id);
+  // }
 
   function increment() {
     setQuantity((prevQuantity) => prevQuantity + 1);
