@@ -1,5 +1,6 @@
 import mysql from "mysql2";
 import dotenv from "dotenv";
+import { productData } from "./productData.js";
 dotenv.config({ path: ".env.local" });
 
 const dp = mysql
@@ -67,3 +68,25 @@ export async function deleteCartItem(cartId) {
   const [result] = await dp.query(deleteCartItemQuery, [cartId]);
   return result;
 }
+
+async function insertProductItems() {
+  const insertProductQuery =
+    "INSERT INTO products (product_id, image, brand, title, rating, description, price, ratingCount, category_id, productType) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  for (let i = 0; i < productData.length; i++) {
+    const product = productData[i];
+    await dp.query(insertProductQuery, [
+      product.id,
+      product.image,
+      product.brand,
+      product.title,
+      product.rating,
+      product.description,
+      product.price,
+      product.ratingCount,
+      product.category,
+      product.productType,
+    ]);
+  }
+}
+
+// insertProductItems();
