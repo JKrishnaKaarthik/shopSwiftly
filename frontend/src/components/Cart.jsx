@@ -12,6 +12,7 @@ export default function Cart(props) {
       title: "",
       price: "",
       itemcount: 0,
+      product_id: 0,
     },
   ];
   const [cartDetails, setCartDetails] = useState(initalState);
@@ -92,6 +93,7 @@ export default function Cart(props) {
   //to generate all the cart items to render on the page
   let cartElements;
   cartElements = cartDetails.map((item) => {
+    console.log(item);
     return (
       <CartItem
         key={item.cart_id}
@@ -100,6 +102,7 @@ export default function Cart(props) {
         title={item.title}
         price={item.price}
         itemcount={item.itemcount}
+        productId={item.product_id}
         incrementCartItem={incrementCartItem}
         decrementCartItem={decrementCartItem}
         deleteCartItem={deleteCartItem}

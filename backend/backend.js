@@ -51,7 +51,7 @@ export async function getProduct(id) {
 
 export async function getCartItems(username) {
   const getCartItemsQuery =
-    "select c.cart_id, p.image, p.title, p.price, c.itemcount from products p, users u, cart c where p.product_id = c.product_id and u.username = c.username and u.username=? order by addTime desc";
+    "select c.cart_id, p.image, p.title, p.price, c.itemcount, p.product_id from products p, users u, cart c where p.product_id = c.product_id and u.username = c.username and u.username=? order by addTime desc";
   const [result] = await dp.query(getCartItemsQuery, [username]);
   return result;
 }
@@ -84,6 +84,11 @@ export async function decrementCartCount(cartId) {
   return result;
 }
 
+export async function addOrder(username, productId){
+  const addOrderQuery = "INSERT INTO orders (product_id, username) VALUES(?, ?)";
+  const result = await dp.query(addOrderQuery, [productId, username]);
+  return result;
+}
 // incrementCartCount();
 
 async function insertProductItems() {

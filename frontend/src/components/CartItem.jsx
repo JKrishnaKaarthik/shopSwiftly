@@ -1,17 +1,29 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../style/cart.css";
+import { useNavigate } from "react-router-dom";
 
 export default function CartItem(props) {
+  const navigate = useNavigate();
+
+  const handleCartProductClick = () => {
+    console.log(props.productId);
+    localStorage.setItem("productId", props.productId);
+    navigate("/product");
+  };
+
   return (
     <div className="cart-item">
       <img
+        onClick={handleCartProductClick}
         src={`http://localhost:5000/images/${props.image}`}
         alt="product image"
-        className="cart-prod-img"
+        className="cart-prod-img product-redirect"
       />
       <div className="cart-desc">
-        <h4>{props.title}</h4>
+        <h4 onClick={handleCartProductClick} className="product-redirect">
+          {props.title}
+        </h4>
         <p>₹{props.price}</p>
         <div className="cart-modify">
           <div className="cart-add-remove">
