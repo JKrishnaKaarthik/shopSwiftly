@@ -30,7 +30,9 @@ export default function ProductItem(props) {
         <div className="products-rating">
           <p>{props.rating}</p>
           <StarRating />
-          <h5 className="products-rating-count">{props.ratingCount}</h5>
+          <h5 className="products-rating-count">
+            {props.ratingCount?.toLocaleString()}
+          </h5>
         </div>
         <p className="products-price">₹{props.price}</p>
       </div>

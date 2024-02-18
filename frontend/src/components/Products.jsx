@@ -4,7 +4,18 @@ import ProductItem from "./ProductItem";
 import axios from "axios";
 
 export default function Products() {
-  const [productsDetails, setProductsDetails] = useState();
+  const initalState = [
+    {
+      product_id: 0,
+      image: "",
+      brand: "",
+      title: "",
+      ratingCount: 1000,
+      price: 0,
+      rating: 0.0,
+    },
+  ];
+  const [productsDetails, setProductsDetails] = useState(initalState);
 
   useEffect(() => {
     const getProduct = async () => {

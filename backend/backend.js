@@ -90,6 +90,13 @@ export async function addOrder(username, productId) {
   const [result] = await dp.query(addOrderQuery, [productId, username]);
   return result;
 }
+
+export async function getOrders(username) {
+  const getOrdersQuery =
+    "select p.image, p.title, p.price, p.product_id, o.orderTime from products p, users u, orders o where p.product_id = o.product_id and u.username = o.username and u.username=?";
+  const [result] = await dp.query(getOrdersQuery, [username]);
+  return result;
+}
 // incrementCartCount();
 
 async function insertProductItems() {

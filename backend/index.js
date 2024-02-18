@@ -12,6 +12,7 @@ import {
   incrementCartCount,
   decrementCartCount,
   addOrder,
+  getOrders,
 } from "./backend.js";
 
 const app = express();
@@ -93,6 +94,11 @@ app.post("/orders", async (req, res) => {
   console.log(req.body);
   // const result = 0;
   const result = await addOrder(req.body.username, req.body.productId);
+  return res.json(result);
+});
+
+app.get("/orders/:username", async (req, res) => {
+  const result = await getOrders(req.params.username);
   return res.json(result);
 });
 

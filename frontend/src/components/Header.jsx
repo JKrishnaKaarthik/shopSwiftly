@@ -7,15 +7,19 @@ import { useNavigate } from "react-router-dom";
 export default function Header() {
   const navigate = useNavigate();
 
-  function handleLogoClick() {
+  const handleLogoClick = () => {
     navigate("/home");
-  }
+  };
 
-  function cartHandleClick() {
+  const handleYourOrders = () => {
+    navigate("/orders");
+  };
+
+  const cartHandleClick = () => {
     //in case if there is a page reload necessary
     // window.location.reload(false);
     navigate("/cart");
-  }
+  };
   return (
     <div className="header">
       <h1 className="logo" onClick={handleLogoClick}>
@@ -29,7 +33,9 @@ export default function Header() {
           className="cart-img"
           onClick={cartHandleClick}
         />
-        <button className="your-orders">your orders</button>
+        <button className="your-orders" onClick={handleYourOrders}>
+          your orders
+        </button>
         <button className="header-hello">
           Hello {localStorage.getItem("username")}
         </button>
