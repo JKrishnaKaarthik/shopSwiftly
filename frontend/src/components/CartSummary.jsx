@@ -2,7 +2,6 @@ import React from "react";
 import "../style/CartSummary.css";
 
 export default function CartSummary({ total }) {
-  console.log(total);
   return (
     <div className="cart-summary-main">
       <p>

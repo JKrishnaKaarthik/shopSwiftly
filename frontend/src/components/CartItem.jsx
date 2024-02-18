@@ -1,22 +1,15 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../style/cart.css";
 
 export default function CartItem(props) {
-  const [quantity, setQuantity] = useState(1);
-
-  // if (quantity === 0) {
-  //   props.deleteCartItem(props.id);
-  // }
-
-  function increment() {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+  async function increment() {
+    console.log(props.id);
+    const result = await axios.put(`http://localhost:5000/cart/${props.id}`);
+    console.log(result);
   }
 
-  function decrement() {
-    setQuantity((prevQuantity) =>
-      prevQuantity > 0 ? prevQuantity - 1 : prevQuantity
-    );
-  }
+  function decrement() {}
 
   return (
     <div className="cart-item">
@@ -33,8 +26,11 @@ export default function CartItem(props) {
             <button className="cart-delete cart-remove" onClick={decrement}>
               -
             </button>
-            <h5>{quantity}</h5>
-            <button className="cart-delete cart-add" onClick={increment}>
+            <h5>{props.itemcount}</h5>
+            <button
+              className="cart-delete cart-add"
+              onClick={() => props.incrementCartItem(props.id)}
+            >
               +
             </button>
           </div>

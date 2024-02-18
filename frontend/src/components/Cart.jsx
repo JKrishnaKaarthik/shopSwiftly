@@ -11,11 +11,28 @@ export default function Cart(props) {
       image: "",
       title: "",
       price: "",
+      itemcount: 0,
     },
   ];
 
-  const [cartDetails, setCartDetails] = useState(initalState || []);
+  const [cartDetails, setCartDetails] = useState(initalState);
   const [total, setTotal] = useState(0);
+  console.log(cartDetails);
+
+  const incrementCartItem = async (id) => {
+    try {
+      setCartDetails((prevCartDetails) =>
+        prevCartDetails.map((item) =>
+          item.cart_id === id
+            ? { ...item, itemcount: item.itemcount + 1 }
+            : item
+        )
+      );
+      const result = await axios.put(`http://localhost:5000/cart/${id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const username = localStorage.getItem("username");
   const deleteCartItem = async (id) => {
@@ -63,6 +80,8 @@ export default function Cart(props) {
         image={item.image}
         title={item.title}
         price={item.price}
+        itemcount={item.itemcount}
+        incrementCartItem={incrementCartItem}
         deleteCartItem={deleteCartItem}
       />
     );

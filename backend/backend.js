@@ -51,7 +51,7 @@ export async function getProduct(id) {
 
 export async function getCartItems(username) {
   const getCartItemsQuery =
-    "select c.cart_id, p.image, p.title, p.price from products p, users u, cart c where p.product_id = c.product_id and u.username = c.username and u.username=? order by addTime desc";
+    "select c.cart_id, p.image, p.title, p.price, c.itemcount from products p, users u, cart c where p.product_id = c.product_id and u.username = c.username and u.username=? order by addTime desc";
   const [result] = await dp.query(getCartItemsQuery, [username]);
   return result;
 }
@@ -68,6 +68,16 @@ export async function deleteCartItem(cartId) {
   const [result] = await dp.query(deleteCartItemQuery, [cartId]);
   return result;
 }
+
+export async function incrementCartCount(cartId) {
+  const incrementCartCountQuery =
+    "UPDATE cart SET itemcount = itemcount + 1 WHERE cart_id = ?";
+  const [result] = await dp.query(incrementCartCountQuery, [cartId]);
+  console.log(result);
+  return result;
+}
+
+// incrementCartCount();
 
 async function insertProductItems() {
   const insertProductQuery =
