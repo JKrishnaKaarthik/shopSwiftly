@@ -14,10 +14,8 @@ export default function Cart(props) {
       itemcount: 0,
     },
   ];
-
   const [cartDetails, setCartDetails] = useState(initalState);
   const [total, setTotal] = useState(0);
-  console.log(cartDetails);
 
   const incrementCartItem = async (id) => {
     try {
@@ -28,7 +26,26 @@ export default function Cart(props) {
             : item
         )
       );
-      const result = await axios.put(`http://localhost:5000/cart/${id}`);
+      const result = await axios.put(
+        `http://localhost:5000/cart/increment/${id}`
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const decrementCartItem = async (id) => {
+    try {
+      setCartDetails((prevCartDetails) =>
+        prevCartDetails.map((item) =>
+          item.cart_id === id
+            ? { ...item, itemcount: item.itemcount - 1 }
+            : item
+        )
+      );
+      const result = await axios.put(
+        `http://localhost:5000/cart/decrement/${id}`
+      );
     } catch (err) {
       console.log(err);
     }
@@ -49,7 +66,9 @@ export default function Cart(props) {
     function addNumbersWithCommas(numbersArray) {
       let numbers = [];
       numbersArray.map((item) => {
-        numbers.push(parseInt(item.price.replace(/,/g, ""), 10));
+        numbers.push(
+          parseInt(item.price.replace(/,/g, ""), 10) * item.itemcount
+        );
       });
       const sum = numbers.reduce(
         (accumulator, currentValue) => accumulator + currentValue,
@@ -82,6 +101,7 @@ export default function Cart(props) {
         price={item.price}
         itemcount={item.itemcount}
         incrementCartItem={incrementCartItem}
+        decrementCartItem={decrementCartItem}
         deleteCartItem={deleteCartItem}
       />
     );

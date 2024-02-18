@@ -10,6 +10,7 @@ import {
   addToCart,
   deleteCartItem,
   incrementCartCount,
+  decrementCartCount,
 } from "./backend.js";
 
 const app = express();
@@ -74,9 +75,16 @@ app.delete("/cart/:productID", async (req, res) => {
   return res.json("successful data transfer");
 });
 
-app.put("/cart/:cartId", async (req, res) => {
+app.put("/cart/increment/:cartId", async (req, res) => {
   const cartId = parseInt(req.params.cartId);
   const result = await incrementCartCount(cartId);
+  console.log(result);
+  return res.json("successful data transfer");
+});
+
+app.put("/cart/decrement/:cartId", async (req, res) => {
+  const cartId = parseInt(req.params.cartId);
+  const result = await decrementCartCount(cartId);
   console.log(result);
   return res.json("successful data transfer");
 });

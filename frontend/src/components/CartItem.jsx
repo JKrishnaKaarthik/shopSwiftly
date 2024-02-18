@@ -3,14 +3,6 @@ import axios from "axios";
 import "../style/cart.css";
 
 export default function CartItem(props) {
-  async function increment() {
-    console.log(props.id);
-    const result = await axios.put(`http://localhost:5000/cart/${props.id}`);
-    console.log(result);
-  }
-
-  function decrement() {}
-
   return (
     <div className="cart-item">
       <img
@@ -23,7 +15,10 @@ export default function CartItem(props) {
         <p>₹{props.price}</p>
         <div className="cart-modify">
           <div className="cart-add-remove">
-            <button className="cart-delete cart-remove" onClick={decrement}>
+            <button
+              className="cart-delete cart-remove"
+              onClick={() => props.decrementCartItem(props.id)}
+            >
               -
             </button>
             <h5>{props.itemcount}</h5>

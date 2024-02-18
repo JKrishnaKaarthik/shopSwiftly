@@ -77,6 +77,13 @@ export async function incrementCartCount(cartId) {
   return result;
 }
 
+export async function decrementCartCount(cartId) {
+  const decrementCartCountQuery =
+    "UPDATE cart SET itemcount = itemcount - 1 WHERE cart_id = ?";
+  const [result] = await dp.query(decrementCartCountQuery, [cartId]);
+  return result;
+}
+
 // incrementCartCount();
 
 async function insertProductItems() {
