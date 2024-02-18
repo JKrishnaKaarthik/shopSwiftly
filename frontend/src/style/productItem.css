@@ -68,3 +68,9 @@
   background-color: rgb(255, 204, 0);
   border: 1px solid green;
 }
+
+.product-redirect:hover {
+  text-decoration: none;
+  color: green;
+  cursor: pointer;
+}

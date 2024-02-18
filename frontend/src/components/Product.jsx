@@ -40,6 +40,13 @@ export default function Product() {
   };
 
   const handleBuyNow = async () => {
+    const username = localStorage.getItem("username");
+    const productId = localStorage.getItem("productId");
+    const res = await axios.post(`http://localhost:5000/orders`, {
+      productId: productId,
+      username: username,
+    });
+    console.log(res.data);
     navigate("/completePurchase");
   };
 

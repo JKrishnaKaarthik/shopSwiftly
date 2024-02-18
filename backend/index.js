@@ -11,6 +11,7 @@ import {
   deleteCartItem,
   incrementCartCount,
   decrementCartCount,
+  addOrder,
 } from "./backend.js";
 
 const app = express();
@@ -71,7 +72,6 @@ app.post("/cart", async (req, res) => {
 app.delete("/cart/:productID", async (req, res) => {
   const productId = parseInt(req.params.productID);
   const result = await deleteCartItem(productId);
-  console.log(result);
   return res.json("successful data transfer");
 });
 
@@ -87,6 +87,13 @@ app.put("/cart/decrement/:cartId", async (req, res) => {
   const result = await decrementCartCount(cartId);
   console.log(result);
   return res.json("successful data transfer");
+});
+
+app.post("/orders", async (req, res) => {
+  console.log(req.body);
+  // const result = 0;
+  const result = await addOrder(req.body.username, req.body.productId);
+  return res.json(result);
 });
 
 app.listen(port, () => {
