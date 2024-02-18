@@ -22,9 +22,11 @@
   cursor: pointer;
 }
 
-.products-title:hover {
+.products-title:hover,
+.products-image:hover {
   text-decoration: dashed;
   color: rgb(18, 251, 18);
+  cursor: pointer;
 }
 
 .products-rating {

@@ -1,7 +1,18 @@
 .product-main {
   margin: 2rem;
   display: flex;
-  justify-content: space-around;
+}
+
+.product-image-container {
+  width: 40%;
+  height: 40%;
+  margin: 0rem 1.5rem;
+}
+
+.product-image {
+  max-width: 80%;
+  height: 100%;
+  margin: 10% 1.5rem;
 }
 
 .product-details {

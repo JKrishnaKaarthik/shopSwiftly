@@ -84,8 +84,9 @@ export async function decrementCartCount(cartId) {
   return result;
 }
 
-export async function addOrder(username, productId){
-  const addOrderQuery = "INSERT INTO orders (product_id, username) VALUES(?, ?)";
+export async function addOrder(username, productId) {
+  const addOrderQuery =
+    "INSERT INTO orders (product_id, username) VALUES(?, ?)";
   const [result] = await dp.query(addOrderQuery, [productId, username]);
   return result;
 }
