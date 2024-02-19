@@ -4,18 +4,18 @@ import ProductItem from "./ProductItem";
 import axios from "axios";
 
 export default function Products() {
-  const initalState = [
-    {
-      product_id: 0,
-      image: "",
-      brand: "",
-      title: "",
-      ratingCount: 1000,
-      price: 0,
-      rating: 0.0,
-    },
-  ];
-  const [productsDetails, setProductsDetails] = useState(initalState);
+  // const initalState = [
+  //   {
+  //     product_id: 0,
+  //     image: "",
+  //     brand: "",
+  //     title: "",
+  //     ratingCount: 1000,
+  //     price: 0,
+  //     rating: 0.0,
+  //   },
+  // ];
+  const [productsDetails, setProductsDetails] = useState();
 
   useEffect(() => {
     const getProduct = async () => {
@@ -29,10 +29,10 @@ export default function Products() {
     getProduct();
   }, []);
 
-  let productElements;
-
-  if (productsDetails) {
-    productElements = productsDetails.map((item) => {
+  let productElements =
+    productsDetails &&
+    productsDetails.length > 0 &&
+    productsDetails.map((item) => {
       return (
         <ProductItem
           key={item.product_id}
@@ -46,7 +46,6 @@ export default function Products() {
         />
       );
     });
-  }
   return (
     <div>
       <Header />
