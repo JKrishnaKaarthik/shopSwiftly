@@ -1,8 +1,8 @@
 import React from "react";
-import "../style/header.css";
 import { FaCartShopping } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
+import "../style/header.css";
 
 export default function Header() {
   const navigate = useNavigate();
