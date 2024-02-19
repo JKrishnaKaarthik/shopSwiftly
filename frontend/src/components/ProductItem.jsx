@@ -29,7 +29,7 @@ export default function ProductItem(props) {
         </p>
         <div className="products-rating">
           <p>{props.rating}</p>
-          <StarRating />
+          <StarRating rating={props.rating} />
           <h5 className="products-rating-count">
             {props.ratingCount?.toLocaleString()}
           </h5>
