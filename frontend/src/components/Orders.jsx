@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import OrderItem from "./OrderItem";
 import axios from "axios";
+import StarRating from "./StarRating";
 
 export default function Orders() {
   const [ordersData, setOrdersData] = useState();
@@ -25,6 +26,7 @@ export default function Orders() {
       <Header />
       <h1 className="orders-heading">Your Orders</h1>
       <OrderItem />
+      <StarRating rating={1} />
     </div>
   );
 }
