@@ -6,7 +6,7 @@ export default function StarRating(props) {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    setRating(props.rating);
+    setRating(Math.round(props.rating));
   }, []);
   let count = 1;
   return (
