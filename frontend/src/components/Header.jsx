@@ -1,9 +1,8 @@
 import React from "react";
-import cart from "../assets/images/cart-img.png";
-import profile from "../assets/images/profile.png";
 import "../style/header.css";
 import { FaCartShopping } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -35,7 +34,7 @@ export default function Header() {
         <button className="header-hello">
           Hello {localStorage.getItem("username")}
         </button>
-        <img src={profile} alt="profile icon" className="header-profile-icon" />
+        <CgProfile size={45} color="#e18826" />
       </div>
     </div>
   );
