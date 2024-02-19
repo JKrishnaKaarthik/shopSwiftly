@@ -2,6 +2,7 @@ import React from "react";
 import cart from "../assets/images/cart-img.png";
 import profile from "../assets/images/profile.png";
 import "../style/header.css";
+import { FaCartShopping } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
@@ -27,12 +28,7 @@ export default function Header() {
       </h1>
       <div className="header-items">
         <input type="text" placeholder="search" className="search" />
-        <img
-          src={cart}
-          alt="image of cart"
-          className="cart-img"
-          onClick={cartHandleClick}
-        />
+        <FaCartShopping size={45} color="grey" onClick={cartHandleClick} />
         <button className="your-orders" onClick={handleYourOrders}>
           your orders
         </button>
