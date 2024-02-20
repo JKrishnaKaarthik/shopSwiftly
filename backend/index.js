@@ -13,6 +13,7 @@ import {
   decrementCartCount,
   addOrder,
   getOrders,
+  search,
 } from "./backend.js";
 
 const app = express();
@@ -92,7 +93,6 @@ app.put("/cart/decrement/:cartId", async (req, res) => {
 
 app.post("/orders", async (req, res) => {
   console.log(req.body);
-  // const result = 0;
   const result = await addOrder(req.body.username, req.body.productId);
   return res.json(result);
 });
@@ -100,6 +100,11 @@ app.post("/orders", async (req, res) => {
 app.get("/orders/:username", async (req, res) => {
   const result = await getOrders(req.params.username);
   return res.json(result);
+});
+
+app.get("/search/:query", (req, res) => {
+  console.log(req.params.query);
+  res.json({ message: "search data send" });
 });
 
 app.listen(port, () => {

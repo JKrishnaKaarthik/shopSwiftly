@@ -1,6 +1,6 @@
 import React from "react";
 import StarRating from "./StarRating";
-import "../style/ProductItem.css";
+import "../style/productItem.css";
 import { useNavigate } from "react-router-dom";
 
 export default function ProductItem(props) {

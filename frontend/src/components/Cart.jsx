@@ -15,7 +15,7 @@ export default function Cart(props) {
       product_id: 0,
     },
   ];
-  const [cartDetails, setCartDetails] = useState(initalState);
+  const [cartDetails, setCartDetails] = useState([]);
   const [total, setTotal] = useState(0);
 
   const incrementCartItem = async (id) => {
@@ -83,32 +83,38 @@ export default function Cart(props) {
 
   //to get the cart items from the database
   useEffect(() => {
-    const getCartItems = async () => {
-      const res = await axios.get(`http://localhost:5000/cart/${username}`);
-      setCartDetails(res.data.data);
-    };
-    getCartItems();
+    try {
+      const getCartItems = async () => {
+        const res = await axios.get(`http://localhost:5000/cart/${username}`);
+        setCartDetails(res.data.data);
+      };
+      getCartItems();
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
   //to generate all the cart items to render on the page
   let cartElements;
-  cartElements = cartDetails.map((item) => {
-    console.log(item);
-    return (
-      <CartItem
-        key={item.cart_id}
-        id={item.cart_id}
-        image={item.image}
-        title={item.title}
-        price={item.price}
-        itemcount={item.itemcount}
-        productId={item.product_id}
-        incrementCartItem={incrementCartItem}
-        decrementCartItem={decrementCartItem}
-        deleteCartItem={deleteCartItem}
-      />
-    );
-  });
+  cartElements =
+    cartDetails.length > 0 &&
+    cartDetails.map((item) => {
+      console.log(item);
+      return (
+        <CartItem
+          key={item.cart_id}
+          id={item.cart_id}
+          image={item.image}
+          title={item.title}
+          price={item.price}
+          itemcount={item.itemcount}
+          productId={item.product_id}
+          incrementCartItem={incrementCartItem}
+          decrementCartItem={decrementCartItem}
+          deleteCartItem={deleteCartItem}
+        />
+      );
+    });
 
   return (
     <div>

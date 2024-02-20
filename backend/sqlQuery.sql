@@ -50,6 +50,15 @@ create table orders(
     foreign key (username) references users (username) on delete cascade
 );
 
+create table tokenf(token varchar(50) primary key, frequency int);
+
+create table tfidf(
+    token varchar(50),
+    productID int,
+    tf double(20, 5),
+    primary key(token, productID)
+);
+
 --to check the tables created
 show tables;
 
@@ -69,15 +78,15 @@ VALUES
     (2, 'clothes');
 
 -- Create the trigger
-DELIMITER //
-CREATE TRIGGER delete_cart_item
-AFTER UPDATE ON cart
-FOR EACH ROW
-BEGIN
-    IF NEW.itemcount = 0 THEN
-        DELETE FROM cart WHERE cart_id = NEW.cart_id;
-    END IF;
-END //
-DELIMITER ;
+DELIMITER / / CREATE TRIGGER delete_cart_item
+AFTER
+UPDATE
+    ON cart FOR EACH ROW BEGIN IF NEW.itemcount = 0 THEN
+DELETE FROM
+    cart
+WHERE
+    cart_id = NEW.cart_id;
 
+END IF;
 
+END / / DELIMITER;
