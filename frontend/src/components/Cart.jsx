@@ -101,18 +101,20 @@ export default function Cart(props) {
     cartDetails.map((item) => {
       console.log(item);
       return (
-        <CartItem
-          key={item.cart_id}
-          id={item.cart_id}
-          image={item.image}
-          title={item.title}
-          price={item.price}
-          itemcount={item.itemcount}
-          productId={item.product_id}
-          incrementCartItem={incrementCartItem}
-          decrementCartItem={decrementCartItem}
-          deleteCartItem={deleteCartItem}
-        />
+        item.itemcount > 0 && (
+          <CartItem
+            key={item.cart_id}
+            id={item.cart_id}
+            image={item.image}
+            title={item.title}
+            price={item.price}
+            itemcount={item.itemcount}
+            productId={item.product_id}
+            incrementCartItem={incrementCartItem}
+            decrementCartItem={decrementCartItem}
+            deleteCartItem={deleteCartItem}
+          />
+        )
       );
     });
 
