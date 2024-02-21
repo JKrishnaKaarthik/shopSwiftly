@@ -3,12 +3,14 @@ import { FaCartShopping } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { productContext } from "../Contexts/productContext";
 import "../style/header.css";
 
 export default function Header() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const { setProdcutData } = useContext(productContext);
 
   const handleSearch = async () => {
     try {
@@ -16,6 +18,8 @@ export default function Header() {
         `http://localhost:5000/search/${search}`
       );
       console.log(response.data);
+      setProdcutData(response.data);
+      navigate("/products");
     } catch (err) {
       console.log(err);
     }

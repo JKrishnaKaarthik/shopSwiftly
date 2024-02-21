@@ -14,6 +14,7 @@ import {
   addOrder,
   getOrders,
   search,
+  getSearchResults,
 } from "./backend.js";
 
 const app = express();
@@ -102,9 +103,10 @@ app.get("/orders/:username", async (req, res) => {
   return res.json(result);
 });
 
-app.get("/search/:query", (req, res) => {
+app.get("/search/:query", async (req, res) => {
   console.log(req.params.query);
-  res.json({ message: "search data send" });
+  const result = await getSearchResults(req.params.query);
+  return res.json(result);
 });
 
 app.listen(port, () => {
