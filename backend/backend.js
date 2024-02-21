@@ -204,23 +204,25 @@ export async function search(query) {
       }
     }
   }
-  const ans = [];
-  for (const key in res) ans.push(key);
-  // ans.sort();
-  return ans;
+  const tmp1 = [];
+  for (const key in res) tmp1.push([res[key], key]);
+  tmp1.sort((a, b) => b[0] - a[0]);
+  return tmp1;
 }
 
 export async function getSearchResults(query) {
   const productIDs = await search(query);
-  // const products = [];
-  // for (let i = 0; i < productIDs.length; i++) {
-  //   const product = await getProduct(productIDs[i]);
-  //   products.push(product);
-  // }
-  // return products;
-  const getProductsQuery = "select * from products where product_id in (?)";
-  const [result] = await dp.query(getProductsQuery, [productIDs]);
-  return result;
+  const products = [];
+  for (let i = 0; i < productIDs.length; i++) {
+    const product = await getProduct(productIDs[i][1]);
+    products.push(product);
+  }
+  return products;
+  // const getProductsQuery = "select * from products where product_id in (?)";
+  // const [result] = await dp.query(getProductsQuery, [
+  //   productIDs.map((x) => x[1]),
+  // ]);
+  // return result;
 }
 
 // insertProductItems();
