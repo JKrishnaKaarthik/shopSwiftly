@@ -11,12 +11,14 @@
 .order-item img {
   width: 150px;
   margin: 0.5rem;
+  cursor: pointer;
   max-height: 25vh;
 }
 
 .order-item-title {
   font-size: 1rem;
   margin: 0.5rem 0rem;
+  cursor: pointer;
 }
 .order-item-brand {
   font-size: 1rem;

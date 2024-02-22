@@ -12,6 +12,7 @@ export default function Orders() {
       try {
         const res = await axios.get(`http://localhost:5000/orders/${username}`);
         setOrdersData(res.data);
+        console.log(ordersData);
       } catch (err) {
         console.log(err);
       }
@@ -25,6 +26,7 @@ export default function Orders() {
     ordersData.map((order, id) => (
       <OrderItem
         key={id}
+        productId={order.product_id}
         title={order.title}
         brand={order.brand}
         price={order.price}
