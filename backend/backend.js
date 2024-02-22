@@ -75,7 +75,6 @@ export async function incrementCartCount(cartId) {
   const incrementCartCountQuery =
     "UPDATE cart SET itemcount = itemcount + 1 WHERE cart_id = ?";
   const [result] = await dp.query(incrementCartCountQuery, [cartId]);
-  console.log(result);
   return result;
 }
 
@@ -164,7 +163,6 @@ async function insertProductItems() {
 }
 
 export async function search(query) {
-  console.log(query);
   let tokens = query
     .split(" ")
     .map((token) => stemmer.stem(token).toLowerCase().trim());

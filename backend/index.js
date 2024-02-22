@@ -81,19 +81,16 @@ app.delete("/cart/:productID", async (req, res) => {
 app.put("/cart/increment/:cartId", async (req, res) => {
   const cartId = parseInt(req.params.cartId);
   const result = await incrementCartCount(cartId);
-  console.log(result);
   return res.json("successful data transfer");
 });
 
 app.put("/cart/decrement/:cartId", async (req, res) => {
   const cartId = parseInt(req.params.cartId);
   const result = await decrementCartCount(cartId);
-  console.log(result);
   return res.json("successful data transfer");
 });
 
 app.post("/orders", async (req, res) => {
-  console.log(req.body);
   const result = await addOrder(req.body.username, req.body.productId);
   return res.json(result);
 });
@@ -104,7 +101,6 @@ app.get("/orders/:username", async (req, res) => {
 });
 
 app.get("/search/:query", async (req, res) => {
-  console.log(req.params.query);
   const result = await getSearchResults(req.params.query);
   return res.json(result);
 });
