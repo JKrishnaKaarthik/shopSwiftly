@@ -75,7 +75,7 @@ export default function Product() {
           <p className="product-brand">brand:{productInfo.brand}</p>
           <span className="product-rating-span">
             <span className="product-rating-value">{productInfo.rating}</span>
-            <StarRating />
+            {productInfo?.rating && <StarRating rating={productInfo?.rating} />}
             <span className="product-rating-count">
               {productInfo.ratingCount}
             </span>

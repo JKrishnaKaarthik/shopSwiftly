@@ -4,6 +4,7 @@ import "../style/starRating.css";
 
 export default function StarRating(props) {
   const [rating, setRating] = useState(0);
+  console.log(rating);
 
   useEffect(() => {
     setRating(Math.round(props.rating));
