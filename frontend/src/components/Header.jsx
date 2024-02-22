@@ -18,11 +18,16 @@ export default function Header() {
       const response = await axios.get(
         `http://localhost:5000/search/${search}`
       );
-      console.log(response.data);
       setProdcutData(response.data);
       navigate("/products");
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
     }
   };
 
@@ -55,6 +60,7 @@ export default function Header() {
             className="search"
             value={search}
             onChange={handleSerachChange}
+            onKeyDown={handleKeyDown}
           />
           {/* <button onClick={handleSearch}>search</button> */}
           <div
@@ -67,7 +73,11 @@ export default function Header() {
             <FaSearch size={20} color="black" onClick={handleSearch} />
           </div>
         </div>
-        <FaCartShopping size={45} color="rgb(199, 199, 199)" onClick={cartHandleClick} />
+        <FaCartShopping
+          size={45}
+          color="rgb(199, 199, 199)"
+          onClick={cartHandleClick}
+        />
         <button className="your-orders" onClick={handleYourOrders}>
           your orders
         </button>
