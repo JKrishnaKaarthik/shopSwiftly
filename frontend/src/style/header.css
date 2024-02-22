@@ -17,6 +17,19 @@
   margin-right: 1rem;
 }
 
+.search-bar {
+  display: flex;
+  align-items: center;
+  /* justify-content: flex-end; */
+  margin-left: auto;
+  margin-right: 1rem;
+}
+.serach-icon {
+  background-color: rgb(239, 144, 2);
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
 .logo {
   font-size: 2rem;
   color: white;
@@ -33,9 +46,10 @@
 
 .search {
   align-self: auto;
+  width: 250px;
   height: 25px;
   margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  margin-right: 0.15rem;
 }
 
 .your-orders {
@@ -51,6 +65,7 @@
   height: 40px;
   margin-left: 0.5rem;
   margin-right: 1rem;
-  background-color: rgb(255, 115, 0);
+  background-color: rgb(255, 127, 22);
   color: rgba(10, 10, 186, 0.717);
+  cursor: pointer;
 }

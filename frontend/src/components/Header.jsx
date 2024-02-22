@@ -2,9 +2,10 @@ import React from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
-import axios from "axios";
 import { useState, useContext } from "react";
 import { productContext } from "../Contexts/productContext";
+import { FaSearch } from "react-icons/fa";
+import axios from "axios";
 import "../style/header.css";
 
 export default function Header() {
@@ -43,19 +44,30 @@ export default function Header() {
   };
   return (
     <div className="header">
-      <h1 className="logo" onClick={handleLogoClick}>
-        AMAZIN
-      </h1>
+      <h2 className="logo" onClick={handleLogoClick}>
+        Shop Swiftly
+      </h2>
       <div className="header-items">
-        <input
-          type="text"
-          placeholder="search"
-          className="search"
-          value={search}
-          onChange={handleSerachChange}
-        />
-        <button onClick={handleSearch}>search</button>
-        <FaCartShopping size={45} color="grey" onClick={cartHandleClick} />
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="search"
+            className="search"
+            value={search}
+            onChange={handleSerachChange}
+          />
+          {/* <button onClick={handleSearch}>search</button> */}
+          <div
+            style={{
+              backgroundColor: "rgb(255, 115, 0)",
+              borderRadius: "15%",
+              padding: "3px",
+            }}
+          >
+            <FaSearch size={20} color="black" onClick={handleSearch} />
+          </div>
+        </div>
+        <FaCartShopping size={45} color="rgb(199, 199, 199)" onClick={cartHandleClick} />
         <button className="your-orders" onClick={handleYourOrders}>
           your orders
         </button>
