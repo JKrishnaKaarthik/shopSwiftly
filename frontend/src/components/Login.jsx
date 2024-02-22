@@ -72,11 +72,11 @@ export default function Login(props) {
             value={loginData.password}
           />
           <br />
-          <button type="submit">Login</button>
+          <button type="submit" className="login-button">Login</button>
           <br />
           <p className="create-account">Create Account</p>
           <Link to="/signup" className="Link">
-            <button>Sign up</button>
+            <button className="login-button">Sign up</button>
           </Link>
         </form>
       </div>
