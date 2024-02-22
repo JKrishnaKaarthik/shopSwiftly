@@ -22,7 +22,7 @@ export default function Products() {
       }
     };
     getProduct();
-  }, []);
+  }, [productData]);
 
   let productElements =
     productsDetails &&
