@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import OrderItem from "./OrderItem";
 import axios from "axios";
-import StarRating from "./StarRating";
 
 export default function Orders() {
-  const [ordersData, setOrdersData] = useState();
+  const [ordersData, setOrdersData] = useState([]);
   const username = localStorage.getItem("username");
-  console.log(ordersData);
 
   useEffect(() => {
     const getOrders = async () => {
@@ -21,12 +19,26 @@ export default function Orders() {
     getOrders();
   }, []);
 
+  let orders;
+  orders =
+    ordersData.length > 0 &&
+    ordersData.map((order, id) => (
+      <OrderItem
+        key={id}
+        title={order.title}
+        brand={order.brand}
+        price={order.price}
+        rating={order.rating}
+        image={order.image}
+        orderDate={order.orderTime}
+      />
+    ));
+
   return (
     <div className="orders-main">
       <Header />
       <h1 className="orders-heading">Your Orders</h1>
-      <OrderItem />
-      <StarRating rating={1} />
+      <div className="orders">{orders}</div>
     </div>
   );
 }

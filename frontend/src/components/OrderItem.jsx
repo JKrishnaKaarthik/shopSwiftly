@@ -1,21 +1,37 @@
 import React from "react";
+import StarRating from "./StarRating";
+import "../style/orderItem.css";
 
-export default function OrderItem() {
+export default function OrderItem(props) {
+  console.log(props);
 
-  
+  // const timestamp = "2024-02-21T16:57:37.000Z";
+  const date = new Date(props.orderDate);
 
+  const day = date.getDate();
+  const month = date.toLocaleString("default", { month: "short" });
+  const year = date.getFullYear();
+
+  const formattedDate = `${day} ${month} ${year}`;
   return (
-    <div className="order-item-main">
-      <div className="order-item">
-        <div className="order-item-image">
-          <img src="http://localhost:5000/images/image3.jpg" alt="product" />
+    <div className="order-item">
+      <div className="order-item-image">
+        <img
+          src={`http://localhost:5000/images/${props.image}`}
+          alt="product"
+        />
+      </div>
+      <div className="order-item-details">
+        <h3 className="order-item-title">{props.title}</h3>
+        <h4 className="order-item-brand">Brand: {props.brand}</h4>
+        <div className="order-rating">
+          {props.rating}
+          <StarRating rating={props.rating} />
         </div>
-        <div className="order-item-details">
-          <p className="order-item-title">Product Title</p>
-          <p className="order-item-brand">Brand</p>
-          <p className="order-item-price">Price: $100</p>
-          <p className="order-item-rating">Rating: 4.5</p>
-        </div>
+        <h4 className="order-item-price">Price: ₹{props.price}</h4>
+        <span className="order-item-date">
+          Ordered on: <span className="order-date">{formattedDate}</span>
+        </span>
       </div>
     </div>
   );

@@ -94,7 +94,7 @@ export async function addOrder(username, productId) {
 
 export async function getOrders(username) {
   const getOrdersQuery =
-    "select p.image, p.title, p.price, p.product_id, o.orderTime from products p, users u, orders o where p.product_id = o.product_id and u.username = o.username and u.username=?";
+    "select p.image, p.title, p.price, p.rating, p.brand, p.product_id, o.orderTime from products p, users u, orders o where p.product_id = o.product_id and u.username = o.username and u.username=? order by orderTime desc";
   const [result] = await dp.query(getOrdersQuery, [username]);
   return result;
 }
