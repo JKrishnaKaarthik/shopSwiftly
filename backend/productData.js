@@ -179,6 +179,8 @@ export const productData = [
       "Samsung Galaxy F34 5G (Orchid Violet, 6 GB RAM, 128 GB Storage) | 50 MP No Shake Camera | Auto Night Mode | 120 Hz AMOLED Display | 4K Videos | 6000 mAh Large Battery | Dolby Atmos | Gorilla Glass 5",
     brand: "Samsung",
     price: "17,190",
+    rating: 4.0,
+    ratingCount: 1246,
     description:
       "【RAM, ROM And Expandable】:- 6 GB RAM with 128 GB Internal Storage, expandable up to 1TB via micro SD card || The Galaxy F34 5G offers 128GB of internal storage, capable of accommodating a vast array of data, including high-quality media files. For users requiring additional storage space, expansion is possible through the hybrid slot, supporting microSD cards up to 1TB.\n\
     【Convenient Payments】:- With the Samsung Wallet, you can conveniently make your payments and store all important documents securely and in one place. 【Knox Protection】:- Your privacy is important and Knox Security ensures that all your personal information is safe and secure.\n\
