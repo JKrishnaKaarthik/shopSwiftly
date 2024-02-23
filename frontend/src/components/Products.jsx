@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import Header from "./Header";
 import ProductItem from "./ProductItem";
-import axios from "axios";
+import ProductFilter from "./ProductFilter";
 import { productContext } from "../Contexts/productContext";
+import axios from "axios";
+import "../style/products.css";
 
 export default function Products() {
   const [productsDetails, setProductsDetails] = useState();
@@ -44,7 +46,12 @@ export default function Products() {
   return (
     <div>
       <Header />
-      {productElements}
+      <div className="products-main">
+        <span className="product-items">{productElements}</span>
+        <span className="product-filter">
+          <ProductFilter />
+        </span>
+      </div>
     </div>
   );
 }

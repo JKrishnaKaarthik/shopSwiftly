@@ -1,0 +1,15 @@
+.products-main {
+  display: flex;
+}
+.product-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 60%;
+}
+.product-filter {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

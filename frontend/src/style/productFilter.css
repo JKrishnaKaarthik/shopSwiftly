@@ -1,0 +1,11 @@
+.product-filter-rating {
+  display: flex;
+  flex-direction: column-reverse;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.search-rating-select {
+  display: flex;
+  margin: 0.25rem 0rem;
+}

@@ -13,7 +13,6 @@ export default function Category(props) {
       const res = await axios.get(
         `http://localhost:5000/search/category/${props.name}`
       );
-      console.log(res);
       setProdcutData(res.data);
       navigate("/products");
     } catch (err) {
