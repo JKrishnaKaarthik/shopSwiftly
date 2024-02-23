@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/CartSummary.css";
+import "../style/cartSummary.css";
 
 export default function CartSummary({ total }) {
   return (
