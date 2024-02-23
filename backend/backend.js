@@ -51,6 +51,14 @@ export async function getProduct(id) {
   return result[0];
 }
 
+export async function getCategoryProduct(categroyName) {
+  const getCategoryProductQuery =
+    "select p.product_id, p.image, p.brand, p.title, p.rating, p.description, p.price, p.ratingCount, p.productType, c.category_name\
+    from products p, category c where p.category_id = c.category_id and category_name = ?";
+  const [result] = await dp.query(getCategoryProductQuery, [categroyName]);
+  return result;
+}
+
 export async function getCartItems(username) {
   const getCartItemsQuery =
     "select c.cart_id, p.image, p.title, p.price, c.itemcount, p.product_id from products p, users u, cart c where p.product_id = c.product_id and u.username = c.username and u.username=? order by addTime desc";

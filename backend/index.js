@@ -15,6 +15,7 @@ import {
   getOrders,
   search,
   getSearchResults,
+  getCategoryProduct,
 } from "./backend.js";
 
 const app = express();
@@ -102,6 +103,11 @@ app.get("/orders/:username", async (req, res) => {
 
 app.get("/search/:query", async (req, res) => {
   const result = await getSearchResults(req.params.query);
+  return res.json(result);
+});
+
+app.get("/search/category/:category", async (req, res) => {
+  const result = await getCategoryProduct(req.params.category);
   return res.json(result);
 });
 

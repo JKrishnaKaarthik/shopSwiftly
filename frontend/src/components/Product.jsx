@@ -77,7 +77,7 @@ export default function Product() {
             <span className="product-rating-value">{productInfo.rating}</span>
             {productInfo?.rating && <StarRating rating={productInfo?.rating} />}
             <span className="product-rating-count">
-              {productInfo.ratingCount}
+              {productInfo.ratingCount.toLocaleString()}
             </span>
           </span>
           <h3 className="product-in-stock">In stock</h3>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../style/signup.css"
+import "../style/signup.css";
 
 export default function SignUp(props) {
   const initalState = {
@@ -14,6 +14,7 @@ export default function SignUp(props) {
     confirmPassword: "",
   };
   const [signupData, setSignupData] = useState(initalState);
+  const navigate = useNavigate;
 
   // const [validSignup, setValidSignup] = useState("");
 
@@ -36,14 +37,17 @@ export default function SignUp(props) {
       return;
     }
 
-    axios
-      .post("http://localhost:5000/signup", signupData)
-      .then((res) => {
-        console.log(res);
-        setSignupData(initalState);
-      })
-      .catch((err) => console.log(err));
-    console.log("sign up successfull");
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/signup",
+        signupData
+      );
+      console.log(response);
+      setSignupData(initalState);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
