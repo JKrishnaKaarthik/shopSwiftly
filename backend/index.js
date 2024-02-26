@@ -113,7 +113,8 @@ app.get("/search/category/:category", async (req, res) => {
   const searchCategory = await getCategoryProduct(req.params.category);
   const query = [searchCategory];
   const searchBrands = await getProductBrandFromSearch(query[0]);
-  return res.json(searchCategory);
+  console.log(searchBrands);
+  return res.json({ productData: searchCategory, brands: searchBrands });
 });
 
 app.listen(port, () => {

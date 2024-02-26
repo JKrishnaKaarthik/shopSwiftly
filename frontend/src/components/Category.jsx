@@ -14,6 +14,7 @@ export default function Category(props) {
         `http://localhost:5000/search/category/${props.name}`
       );
       setProdcutData(res.data);
+      console.log(res.data);
       navigate("/products");
     } catch (err) {
       console.log(err);

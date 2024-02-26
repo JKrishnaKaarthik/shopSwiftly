@@ -10,6 +10,7 @@ export default function Products() {
   const [productsDetails, setProductsDetails] = useState();
   const [productsBrands, setProductsBrands] = useState();
   const { productData } = useContext(productContext);
+  console.log(productData);
 
   useEffect(() => {
     const getProduct = async () => {
