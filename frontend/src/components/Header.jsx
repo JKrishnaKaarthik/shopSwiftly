@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
@@ -8,13 +8,20 @@ import { FaSearch } from "react-icons/fa";
 import axios from "axios";
 import "../style/header.css";
 
-export default function Header() {
+export default function Header(props) {
   const navigate = useNavigate();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(localStorage.getItem("search") || "");
   const { setProdcutData } = useContext(productContext);
+
+  useEffect(() => {
+    if (props?.isProductPage && search.length > 0) {
+      handleSearch();
+    }
+  }, []);
 
   const handleSearch = async () => {
     try {
+      localStorage.setItem("search", search);
       const response = await axios.get(
         `http://localhost:5000/search/${search}`
       );
@@ -32,14 +39,19 @@ export default function Header() {
   };
 
   const handleSerachChange = (e) => {
+    if (e.target.value === "") {
+      localStorage.removeItem("search");
+    }
     setSearch(e.target.value);
   };
 
   const handleLogoClick = () => {
+    localStorage.removeItem("search");
     navigate("/home");
   };
 
   const handleYourOrders = () => {
+    setSearch("");
     navigate("/orders");
   };
 
@@ -62,7 +74,6 @@ export default function Header() {
             onChange={handleSerachChange}
             onKeyDown={handleKeyDown}
           />
-          {/* <button onClick={handleSearch}>search</button> */}
           <div
             style={{
               backgroundColor: "rgb(255, 115, 0)",
