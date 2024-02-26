@@ -9,3 +9,16 @@
   display: flex;
   margin: 0.25rem 0rem;
 }
+
+.filter-brands-selection {
+  display: flex;
+  flex-direction: column;
+}
+.brand-filter {
+  display: flex;
+}
+
+.product-filter-apply {
+  width: 100px;
+  align-self: center;
+}

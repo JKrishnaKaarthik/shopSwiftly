@@ -66,6 +66,21 @@ export async function getCartItems(username) {
   return result;
 }
 
+export async function getProductBrandFromSearch(searchResult) {
+  try {
+    const uniqueBrands = new Set();
+    searchResult.forEach((product) => {
+      uniqueBrands.add(product.brand);
+    });
+
+    const result = Array.from(uniqueBrands);
+    return result;
+  } catch (error) {
+    console.error("Error fetching product brands:", error);
+    throw error; // Rethrow the error to handle it further up the call stack
+  }
+}
+
 export async function addToCart(username, productId) {
   productId = parseInt(productId);
   const addToCartQuery = "INSERT INTO cart (product_id, username) VALUES(?, ?)";
@@ -106,7 +121,6 @@ export async function getOrders(username) {
   const [result] = await dp.query(getOrdersQuery, [username]);
   return result;
 }
-// incrementCartCount();
 
 async function insertProductItems() {
   const insertProductQuery =

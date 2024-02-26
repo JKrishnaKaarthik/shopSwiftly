@@ -8,14 +8,16 @@ import "../style/products.css";
 
 export default function Products() {
   const [productsDetails, setProductsDetails] = useState();
+  const [productsBrands, setProductsBrands] = useState();
   const { productData } = useContext(productContext);
 
   useEffect(() => {
     const getProduct = async () => {
       try {
-        if (productData && productData.length > 0)
-          setProductsDetails(productData);
-        else {
+        if (productData.productData && productData.productData.length > 0) {
+          setProductsDetails(productData.productData);
+          setProductsBrands(productData.brands);
+        } else {
           const res = await axios.get("http://localhost:5000/products");
           setProductsDetails(res.data[0]);
         }
@@ -45,11 +47,11 @@ export default function Products() {
     });
   return (
     <div>
-      <Header />
+      <Header isProductPage={true} />
       <div className="products-main">
         <span className="product-items">{productElements}</span>
         <span className="product-filter">
-          <ProductFilter />
+          {productsBrands && <ProductFilter productsBrands={productsBrands} />}
         </span>
       </div>
     </div>

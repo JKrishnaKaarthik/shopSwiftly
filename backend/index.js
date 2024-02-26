@@ -16,6 +16,7 @@ import {
   search,
   getSearchResults,
   getCategoryProduct,
+  getProductBrandFromSearch,
 } from "./backend.js";
 
 const app = express();
@@ -102,13 +103,17 @@ app.get("/orders/:username", async (req, res) => {
 });
 
 app.get("/search/:query", async (req, res) => {
-  const result = await getSearchResults(req.params.query);
-  return res.json(result);
+  const searchResult = await getSearchResults(req.params.query);
+  const query = [searchResult];
+  const searchBrands = await getProductBrandFromSearch(query[0]);
+  return res.json({ productData: searchResult, brands: searchBrands });
 });
 
 app.get("/search/category/:category", async (req, res) => {
-  const result = await getCategoryProduct(req.params.category);
-  return res.json(result);
+  const searchCategory = await getCategoryProduct(req.params.category);
+  const query = [searchCategory];
+  const searchBrands = await getProductBrandFromSearch(query[0]);
+  return res.json(searchCategory);
 });
 
 app.listen(port, () => {

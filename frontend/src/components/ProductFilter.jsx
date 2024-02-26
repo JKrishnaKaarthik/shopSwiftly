@@ -1,13 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StarRating from "./StarRating";
 import "../style/productFilter.css";
 
-export default function ProductFilter() {
+export default function ProductFilter(props) {
   const [searchRating, setSearchRating] = useState(0);
   const [searchPrice, setSearchPrice] = useState({
     startPrice: 0,
     endPrice: 0,
   });
+  const [searchBrands, setSearchBrands] = useState([]);
+
+  const handleBrandSelection = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setSearchBrands((prevSearchBrands) => [...prevSearchBrands, value]);
+    } else {
+      setSearchBrands((prevSearchBrands) =>
+        prevSearchBrands.filter((brand) => brand !== value)
+      );
+    }
+  };
+
+  console.log(props.productsBrands);
+
+  let brandOptions;
+  brandOptions = props.productsBrands?.map((brand, index) => (
+   brand && <label className="brand-filter" key={index}>
+      <input
+        type="checkbox"
+        value={brand}
+        onChange={handleBrandSelection}
+        className="filter-brands-selection"
+      />
+      {brand}
+    </label>
+  ));
 
   const handleSearchPrice = (e) => {
     const { name, value } = e.target;
@@ -37,6 +64,7 @@ export default function ProductFilter() {
     <div className="rating-filter">
       <h3>Product Serach Filter</h3>
       <h4>Brand</h4>
+      {brandOptions}
       <h4>Price Range</h4>
       <label htmlFor="startPrice">Start Price</label>
       <input
@@ -57,6 +85,7 @@ export default function ProductFilter() {
       />
       <h4>Avg custormer Rating</h4>
       <span className="product-filter-rating">{filterByRating}</span>
+      <button className="product-filter-apply">Apply</button>
     </div>
   );
 }
