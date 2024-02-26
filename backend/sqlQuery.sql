@@ -90,3 +90,39 @@ WHERE
 END IF;
 
 END / / DELIMITER;
+
+--create a trigger which takes deletes the cart item if i purchase the product which mean i insert into orders table then i delete the product with the same product id and the same username from the cart table
+DELIMITER / / CREATE TRIGGER delete_cart_item
+AFTER
+INSERT
+    ON orders FOR EACH ROW BEGIN
+DELETE FROM
+    cart
+WHERE
+    product_id = NEW.product_id
+    AND username = NEW.username;
+
+END / / DELIMITER;
+
+--delete from cart if the itemcount of the cart item becomes 0
+CREATE PROCEDURE delete_zero_item_counts() BEGIN -- Delete rows from the cart table based on entries in the temporary table
+DELETE FROM
+    cart
+WHERE
+    cart_id IN (
+        SELECT
+            cart_id
+        FROM
+            cart_to_delete
+    );
+
+-- Truncate the temporary table
+TRUNCATE TABLE cart_to_delete;
+
+END;
+
+CREATE EVENT delete_zero_item_counts_event ON SCHEDULE EVERY 1 SECOND DO BEGIN CALL delete_zero_item_counts();
+
+END;
+
+/ / DELIMITER;
