@@ -13,10 +13,10 @@ import {
   decrementCartCount,
   addOrder,
   getOrders,
-  search,
   getSearchResults,
   getCategoryProduct,
   getProductBrandFromSearch,
+  getFilteredProducts,
 } from "./backend.js";
 
 const app = express();
@@ -114,6 +114,22 @@ app.get("/search/category/:category", async (req, res) => {
   const query = [searchCategory];
   const searchBrands = await getProductBrandFromSearch(query[0]);
   return res.json({ productData: searchCategory, brands: searchBrands });
+});
+
+app.post("/search/productFilter", async (req, res) => {
+  const productData = req.body.productData.productData;
+  const searchRating = req.body.searchRating;
+  const searchPrice = req.body.searchPrice;
+  const searchBrands = req.body.searchBrands;
+  const result = await getFilteredProducts(
+    productData,
+    searchRating,
+    searchPrice,
+    searchBrands
+  );
+  const brands = await getProductBrandFromSearch(result);
+  console.log(brands.length);
+  return res.json({ result: result, brands: brands });
 });
 
 app.listen(port, () => {

@@ -246,3 +246,37 @@ export async function getSearchResults(query) {
 }
 
 // insertProductItems();
+
+export async function getFilteredProducts(
+  productData,
+  searchRating,
+  searchPrice,
+  searchBrands
+) {
+  let filteredProducts = productData;
+  searchPrice.startPrice = parseInt(searchPrice.startPrice);
+  searchPrice.endPrice = parseInt(searchPrice.endPrice);
+  if (searchRating > 0) {
+    filteredProducts = filteredProducts.filter(
+      (product) => product.rating >= searchRating
+    );
+  }
+  if (searchPrice.startPrice > 0) {
+    filteredProducts = filteredProducts.filter((product) => {
+      const price = parseInt(product.price.replace(/,/g, ""));
+      return price >= searchPrice.startPrice;
+    });
+  }
+  if (searchPrice.endPrice > 0) {
+    filteredProducts = filteredProducts.filter((product) => {
+      const price = parseInt(product.price.replace(/,/g, ""));
+      return price <= searchPrice.endPrice;
+    });
+  }
+  if (searchBrands.length > 0) {
+    filteredProducts = filteredProducts.filter((product) =>
+      searchBrands.includes(product.brand)
+    );
+  }
+  return filteredProducts;
+}

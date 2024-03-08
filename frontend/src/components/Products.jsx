@@ -52,7 +52,7 @@ export default function Products() {
       <div className="products-main">
         <span className="product-items">{productElements}</span>
         <span className="product-filter">
-          {productsBrands && <ProductFilter productsBrands={productsBrands} />}
+          <ProductFilter productsBrands={productsBrands} />
         </span>
       </div>
     </div>
