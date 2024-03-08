@@ -128,7 +128,6 @@ app.post("/search/productFilter", async (req, res) => {
     searchBrands
   );
   const brands = await getProductBrandFromSearch(result);
-  console.log(brands.length);
   return res.json({ result: result, brands: brands });
 });
 

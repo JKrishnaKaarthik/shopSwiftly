@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import StarRating from "./StarRating";
+import { useContext } from "react";
+import { productContext } from "../Contexts/productContext";
+import axios from "axios";
 import "../style/productFilter.css";
 
 export default function ProductFilter(props) {
+  const { productData, setProductData } = useContext(productContext);
   const [searchRating, setSearchRating] = useState(0);
   const [searchPrice, setSearchPrice] = useState({
     startPrice: 0,
@@ -21,20 +25,40 @@ export default function ProductFilter(props) {
     }
   };
 
-  console.log(props.productsBrands);
+  const handleProductFilter = async () => {
+    try {
+      console.log(productData, searchRating, searchPrice, searchBrands);
+      const result = await axios.post(
+        "http://localhost:5000/search/productFilter",
+        {
+          productData,
+          searchRating,
+          searchPrice,
+          searchBrands,
+        }
+      );
+
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   let brandOptions;
-  brandOptions = props.productsBrands?.map((brand, index) => (
-   brand && <label className="brand-filter" key={index}>
-      <input
-        type="checkbox"
-        value={brand}
-        onChange={handleBrandSelection}
-        className="filter-brands-selection"
-      />
-      {brand}
-    </label>
-  ));
+  brandOptions = props.productsBrands?.map(
+    (brand, index) =>
+      brand && (
+        <label className="brand-filter" key={index}>
+          <input
+            type="checkbox"
+            value={brand}
+            onChange={handleBrandSelection}
+            className="filter-brands-selection"
+          />
+          {brand}
+        </label>
+      )
+  );
 
   const handleSearchPrice = (e) => {
     const { name, value } = e.target;
@@ -74,7 +98,6 @@ export default function ProductFilter(props) {
         value={searchPrice.startPrice}
         onChange={handleSearchPrice}
       />
-      to
       <label htmlFor="startPrice">End Price</label>
       <input
         type="number"
@@ -85,7 +108,9 @@ export default function ProductFilter(props) {
       />
       <h4>Avg custormer Rating</h4>
       <span className="product-filter-rating">{filterByRating}</span>
-      <button className="product-filter-apply">Apply</button>
+      <button className="product-filter-apply" onClick={handleProductFilter}>
+        Apply
+      </button>
     </div>
   );
 }
