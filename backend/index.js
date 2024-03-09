@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
 import {
   getUser,
   createUser,
@@ -21,9 +20,9 @@ import {
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(express.static("public"));
-const port = 5000;
+const port = process.env.PORT | 5000;
 
 app.post("/", async (req, res) => {
   const [result] = await getUser(req.body.userName);
@@ -132,5 +131,5 @@ app.post("/search/productFilter", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Listening on ${port}`);
+  console.log(`Listening on http://localhost:${port}`);
 });
