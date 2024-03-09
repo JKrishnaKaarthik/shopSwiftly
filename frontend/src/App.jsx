@@ -15,10 +15,6 @@ export default function App() {
   const [productId, setProductId] = useState(0);
   const [productData, setProdcutData] = useState([]);
 
-  window.addEventListener("beforeunload", function (event) {
-    localStorage.removeItem("search");
-  });
-
   return (
     <productContext.Provider value={{ productData, setProdcutData }}>
       <BrowserRouter>
