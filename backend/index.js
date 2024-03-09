@@ -128,7 +128,7 @@ app.post("/search/productFilter", async (req, res) => {
     searchBrands
   );
   const brands = await getProductBrandFromSearch(result);
-  return res.json({ result: result, brands: brands });
+  return res.json({ productData: result, brands: brands });
 });
 
 app.listen(port, () => {
