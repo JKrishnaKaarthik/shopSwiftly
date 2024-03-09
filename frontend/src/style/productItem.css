@@ -1,7 +1,7 @@
 .products-item-main {
   background-color: white;
   width: 90%;
-  height: 30vh;
+  height: auto;
   margin: 0.5rem 1rem;
   display: flex;
 }
@@ -44,19 +44,21 @@
 }
 
 .products-image-container {
-  width: 30%; /* Adjust width as needed */
+  /* width: 20rem; Adjust width as needed */
   /* height: 90%; */
-  background-color: rgba(224, 224, 224, 0.356);
-  padding: 0.5rem;
-  display: flex;
-  justify-content: center; /* Center image horizontally */
-  align-items: center; /* Center image vertically */
+  background-color: white;
+  /* padding: 0.5rem; */
+  /* display: flex;
+  justify-content: center; 
+  align-items: center;  */
+  padding: 1rem;
 }
 
 .products-image {
-  max-width: 100%; /* Ensure image does not exceed container width */
-  max-height: 100%; /* Ensure image does not exceed container height */
-  object-fit: cover; /* Ensure image covers the container */
+  /* width: 50%; */
+  height: 25vh;
+  object-fit: contain;
+  padding: 0;
 }
 
 .products-price {

@@ -8,6 +8,7 @@
 .search-rating-select {
   display: flex;
   margin: 0.25rem 0rem;
+  width: 30%;
 }
 
 .filter-brands-selection {

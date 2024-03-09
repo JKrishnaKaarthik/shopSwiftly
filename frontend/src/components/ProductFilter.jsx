@@ -6,13 +6,14 @@ import axios from "axios";
 import "../style/productFilter.css";
 
 export default function ProductFilter(props) {
-  const { productData, setProductData } = useContext(productContext);
+  const { productData, setProdcutData } = useContext(productContext);
   const [searchRating, setSearchRating] = useState(0);
+  const [searchBrands, setSearchBrands] = useState([]);
+  const [selectedItemIndex, setSelectedItemIndex] = useState(null);
   const [searchPrice, setSearchPrice] = useState({
     startPrice: 0,
     endPrice: 0,
   });
-  const [searchBrands, setSearchBrands] = useState([]);
 
   const handleBrandSelection = (e) => {
     const { value, checked } = e.target;
@@ -27,7 +28,6 @@ export default function ProductFilter(props) {
 
   const handleProductFilter = async () => {
     try {
-      console.log(productData, searchRating, searchPrice, searchBrands);
       const result = await axios.post(
         "http://localhost:5000/search/productFilter",
         {
@@ -37,7 +37,7 @@ export default function ProductFilter(props) {
           searchBrands,
         }
       );
-
+      setProdcutData(result.data);
       console.log(result);
     } catch (err) {
       console.log(err);
@@ -69,14 +69,23 @@ export default function ProductFilter(props) {
   };
   const handleSearchRating = (id) => {
     setSearchRating(id);
+    if (selectedItemIndex === id) {
+      setSelectedItemIndex(null);
+    } else {
+      setSelectedItemIndex(id);
+    }
   };
+
   const filterByRating = [...Array(4)].map((_, index) => {
     const currIndex = index + 1;
+    const isSelected = currIndex === selectedItemIndex;
+    const borderStyleOfRating = isSelected ? { border: "2px solid black" } : {};
     return (
       <span
         className="search-rating-select"
         key={index}
         onClick={() => handleSearchRating(currIndex)}
+        style={borderStyleOfRating}
       >
         <StarRating rating={currIndex} />
         <p>& up</p>
