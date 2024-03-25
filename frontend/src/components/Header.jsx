@@ -81,10 +81,16 @@ export default function Header(props) {
               padding: "3px",
             }}
           >
-            <FaSearch size={20} color="black" onClick={handleSearch} />
+            <FaSearch
+              size={20}
+              color="black"
+              cursor="pointer"
+              onClick={handleSearch}
+            />
           </div>
         </div>
         <FaCartShopping
+          cursor="pointer"
           size={45}
           color="rgb(199, 199, 199)"
           onClick={cartHandleClick}
