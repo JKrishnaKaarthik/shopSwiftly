@@ -15,7 +15,7 @@ export default function ProductItem(props) {
     <div className="products-item-main">
       <span className="products-image-container" onClick={handleClick}>
         <img
-          src={`http://localhost:5000/images/${props.image}`}
+          src={`/api//images/${props.image}`}
           alt="products image"
           className="products-image"
         />

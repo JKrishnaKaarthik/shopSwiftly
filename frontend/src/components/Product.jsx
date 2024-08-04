@@ -32,7 +32,7 @@ export default function Product() {
   const handleAddToCart = async () => {
     const username = localStorage.getItem("username");
     const productId = localStorage.getItem("productId");
-    const res = await axios.post(`http://localhost:5000/cart`, {
+    const res = await axios.post(`/api//cart`, {
       productId: productId,
       username: username,
     });
@@ -42,7 +42,7 @@ export default function Product() {
   const handleBuyNow = async () => {
     const username = localStorage.getItem("username");
     const productId = localStorage.getItem("productId");
-    const res = await axios.post(`http://localhost:5000/orders`, {
+    const res = await axios.post(`/api//orders`, {
       productId: productId,
       username: username,
     });
@@ -52,7 +52,7 @@ export default function Product() {
 
   useEffect(() => {
     const getProduct = async (productId) => {
-      const res = await axios.get(`http://localhost:5000/product/${productId}`);
+      const res = await axios.get(`/api//product/${productId}`);
       setProductInfo(res.data);
     };
     const productId = localStorage.getItem("productId");
@@ -65,7 +65,7 @@ export default function Product() {
       <div className="product-main">
         <span className="product-image-container">
           <img
-            src={`http://localhost:5000/images/${productInfo.image}`}
+            src={`/api//images/${productInfo.image}`}
             alt="product image"
             className="product-image"
           />

@@ -25,7 +25,7 @@ export default function OrderItem(props) {
       <div className="order-item-image">
         <img
           onClick={handleClick}
-          src={`http://localhost:5000/images/${props.image}`}
+          src={`/api//images/${props.image}`}
           alt="product"
         />
       </div>

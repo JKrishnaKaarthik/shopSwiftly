@@ -28,7 +28,7 @@ export default function Login(props) {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/", loginData);
+      const response = await axios.post("/api/", loginData);
       if (response.data.message === "login data send") {
         navigate("/home");
         localStorage.setItem("username", response.data.userName);

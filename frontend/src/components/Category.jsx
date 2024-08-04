@@ -10,9 +10,7 @@ export default function Category(props) {
   const { setProdcutData } = useContext(productContext);
   const handleClick = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:5000/search/category/${props.name}`
-      );
+      const res = await axios.get(`/api/search/category/${props.name}`);
       setProdcutData(res.data);
       console.log(res.data);
       navigate("/products");

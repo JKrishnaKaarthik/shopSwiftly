@@ -15,7 +15,7 @@ export default function CartItem(props) {
     <div className="cart-item">
       <img
         onClick={handleCartProductClick}
-        src={`http://localhost:5000/images/${props.image}`}
+        src={`/api//images/${props.image}`}
         alt="product image"
         className="cart-prod-img product-redirect"
       />

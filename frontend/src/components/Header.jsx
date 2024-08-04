@@ -22,9 +22,7 @@ export default function Header(props) {
   const handleSearch = async () => {
     try {
       localStorage.setItem("search", search);
-      const response = await axios.get(
-        `http://localhost:5000/search/${search}`
-      );
+      const response = await axios.get(`/api//search/${search}`);
       setProdcutData(response.data);
       navigate("/products");
     } catch (err) {
