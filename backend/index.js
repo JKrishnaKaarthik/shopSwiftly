@@ -30,11 +30,7 @@ app.use(express.json());
 app.use("/api/images", express.static(path.join(__dirname, "public/images")));
 const port = process.env.PORT | 5000;
 
-app.use("/", (req, res) => {
-  return res.send("server is running");
-});
-
-app.post("/api", async (req, res) => {
+app.post("/api/login", async (req, res) => {
   const [result] = await getUser(req.body.userName);
   if (
     result.username === req.body.userName &&
