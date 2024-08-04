@@ -10,7 +10,7 @@ export default function Orders() {
   useEffect(() => {
     const getOrders = async () => {
       try {
-        const res = await axios.get(`/api//orders/${username}`);
+        const res = await axios.get(`/api/orders/${username}`);
         setOrdersData(res.data);
         console.log(ordersData);
       } catch (err) {

@@ -38,7 +38,7 @@ export default function SignUp(props) {
     }
 
     try {
-      const response = await axios.post("/api//signup", signupData);
+      const response = await axios.post("/api/signup", signupData);
       console.log(response);
       setSignupData(initalState);
       navigate("/");

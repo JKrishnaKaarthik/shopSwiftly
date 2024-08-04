@@ -27,7 +27,7 @@ export default function Cart(props) {
             : item
         )
       );
-      const result = await axios.put(`/api//cart/increment/${id}`);
+      const result = await axios.put(`/api/cart/increment/${id}`);
     } catch (err) {
       console.log(err);
     }
@@ -42,7 +42,7 @@ export default function Cart(props) {
             : item
         )
       );
-      const result = await axios.put(`/api//cart/decrement/${id}`);
+      const result = await axios.put(`/api/cart/decrement/${id}`);
     } catch (err) {
       console.log(err);
     }
@@ -51,7 +51,7 @@ export default function Cart(props) {
   const username = localStorage.getItem("username");
   const deleteCartItem = async (id) => {
     try {
-      const result = await axios.delete(`/api//cart/${id}`);
+      const result = await axios.delete(`/api/cart/${id}`);
       window.location.reload();
     } catch (err) {
       console.log(err);
@@ -81,7 +81,7 @@ export default function Cart(props) {
   useEffect(() => {
     try {
       const getCartItems = async () => {
-        const res = await axios.get(`/api//cart/${username}`);
+        const res = await axios.get(`/api/cart/${username}`);
         setCartDetails(res.data.data);
       };
       getCartItems();

@@ -19,7 +19,7 @@ export default function Products() {
           setProductsDetails(productData.productData);
           setProductsBrands(productData.brands);
         } else {
-          const res = await axios.get("/api//products");
+          const res = await axios.get("/api/products");
           setProductsDetails(res.data[0]);
         }
       } catch (err) {

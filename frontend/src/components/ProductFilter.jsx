@@ -28,7 +28,7 @@ export default function ProductFilter(props) {
 
   const handleProductFilter = async () => {
     try {
-      const result = await axios.post("/api//search/productFilter", {
+      const result = await axios.post("/api/search/productFilter", {
         productData,
         searchRating,
         searchPrice,

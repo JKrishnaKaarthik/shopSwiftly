@@ -13,17 +13,12 @@ export default function Header(props) {
   const [search, setSearch] = useState(localStorage.getItem("search") || "");
   const { setProdcutData } = useContext(productContext);
 
-  useEffect(() => {
-    if (props?.isProductPage && search.length > 0) {
-      handleSearch();
-    }
-  }, []);
-
   const handleSearch = async () => {
     try {
       localStorage.setItem("search", search);
-      const response = await axios.get(`/api//search/${search}`);
+      const response = await axios.get(`/api/search/${search}`);
       setProdcutData(response.data);
+      console.log("search clicked");
       navigate("/products");
     } catch (err) {
       console.log(err);
