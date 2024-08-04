@@ -24,6 +24,10 @@ app.use(express.json());
 app.use(express.static("public"));
 const port = process.env.PORT | 5000;
 
+app.use('/', (req, res) => {
+  res.send("server is running")
+});
+
 app.post("/", async (req, res) => {
   const [result] = await getUser(req.body.userName);
   if (
@@ -130,6 +134,6 @@ app.post("/search/productFilter", async (req, res) => {
   return res.json({ productData: result, brands: brands });
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Listening on http://localhost:${port}`);
 });
