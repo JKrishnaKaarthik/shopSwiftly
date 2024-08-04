@@ -1,5 +1,9 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
 import {
   getUser,
   createUser,
@@ -19,14 +23,16 @@ import {
 } from "./backend.js";
 
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+app.use("/api/images", express.static(path.join(__dirname, "public/images")));
 const port = process.env.PORT | 5000;
 
-// app.use('/', (req, res) => {
-//   res.send("server is running")
-// });
+app.use("/", (req, res) => {
+  return res.send("server is running");
+});
 
 app.post("/api", async (req, res) => {
   const [result] = await getUser(req.body.userName);
