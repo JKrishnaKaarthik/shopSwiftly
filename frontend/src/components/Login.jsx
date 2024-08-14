@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-// import "/login.css";
 import "../style/login.css";
 
 export default function Login(props) {
@@ -10,8 +9,6 @@ export default function Login(props) {
     password: "",
   };
   const [loginData, setLoginData] = useState(initalState);
-
-  // const [validLogin, setValidLogin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,10 +25,11 @@ export default function Login(props) {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const response = await axios.post("/api/", loginData);
+      console.log("start login");
+      const response = await axios.post("/api/login/", loginData);
       if (response.data.message === "login data send") {
-        navigate("/home");
         localStorage.setItem("username", response.data.userName);
+        navigate("/home");
       } else {
         alert("invalid username or password");
         setLoginData(initalState);
@@ -72,7 +70,9 @@ export default function Login(props) {
             value={loginData.password}
           />
           <br />
-          <button type="submit" className="login-button">Login</button>
+          <button type="submit" className="login-button">
+            Login
+          </button>
           <br />
           <p className="create-account">Create Account</p>
           <Link to="/signup" className="Link">
